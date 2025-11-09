@@ -24,6 +24,12 @@ log "INFO" "开始生成 portal 配置..."
 python3 /tmp/navpage/private_html/generate_portal_config_pinyin_mulu.py >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "portal 配置生成完成"
 
+GIST_cron_status="https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py"
+log "INFO" "正在生成 cron_status_html 页面..."
+curl -s "$GIST_cron_status" | python3 > /dev/null && \
+log "INFO" "cron_status_html 页面已生成" || \
+log "ERROR" "cron_status_html 页面生成失败"
+
 GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
 log "INFO" "正在下载 index.html 页面..."
 curl -s "$GIST_index_html" | tee /tmp/navpage/index.html > /dev/null && \
