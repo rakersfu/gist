@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+LOG_DIR="/tmp/logs"
+#mkdir -p "$LOG_DIR"
+MAIN_LOG="$LOG_DIR/navpage.log"
+
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') [$1] $2" | tee -a "$MAIN_LOG"
+}
+
+log "INFO" "开始查找图标文件..."
+find /tmp/navpage/icons -type f > /tmp/navpage/icons.txt
+log "INFO" "图标文件列表已保存到 /tmp/navpage/icons.txt"
+
+#log "INFO" "更新 hosts 脚本已准备，暂未启用"
+#cat /tmp/update_hosts.sh.txt | tee /tmp/update_hosts.sh > /dev/null
+
+log "INFO" "开始生成 RSS 新闻..."
+python3 /tmp/navpage/private_html/rss_news.py >> "$MAIN_LOG" 2>&1 && \
+log "INFO" "RSS 新闻生成完成"
+
+log "INFO" "开始生成 portal 配置..."
+python3 /tmp/navpage/private_html/generate_portal_config_pinyin_mulu.py >> "$MAIN_LOG" 2>&1 && \
+log "INFO" "portal 配置生成完成"
+
+GIST_index_html="https://raw.githubusercontent.com/xiongli870110-hue/gist/main/index.html"
+log "INFO" "正在下载 index.html 页面..."
+curl -s "$GIST_index_html" | tee /tmp/navpage/index.html > /dev/null && \
+log "INFO" "index.html 页面已保存到 /tmp/navpage/index.html"
