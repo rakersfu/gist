@@ -20,7 +20,9 @@ LOG_FILE = "/tmp/logs/wedav_list.log"
 # 文件列表（可扩展）
 # -------------------------------
 FILES_TO_UPLOAD = [
-    "/tmp/navpage/nav.html",
+    #"/tmp/navpage/nav.html",
+    "/etc/nginx/ssl/raker.eu.org/fullchain.pem",
+    "/etc/nginx/ssl/raker.eu.org/key.pem",
     # "/tmp/navpage/style.css",
     # "/tmp/navpage/app.js"
 ]
