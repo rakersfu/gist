@@ -30,11 +30,16 @@ log "INFO" "私有资源 首页生成完成"
 
 GIST_cron_status="https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py"
 log "INFO" "正在生成 cron_status_html 页面..."
-curl -s "$GIST_cron_status" | python3 > /dev/null && \
-log "INFO" "cron_status_html 页面已生成" || \
-log "ERROR" "cron_status_html 页面生成失败"
+if curl -s "$GIST_cron_status" | python3 > /dev/null; then
+  log "INFO" "cron_status_html 页面已生成"
+else
+  log "ERROR" "cron_status_html 页面生成失败"
+fi
 
 GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
 log "INFO" "正在下载 index.html 页面..."
-curl -s "$GIST_index_html" | tee /tmp/navpage/index.html > /dev/null && \
-log "INFO" "index.html 页面已保存到 /tmp/navpage/index.html"
+if curl -s "$GIST_index_html" | tee /tmp/navpage/index.html > /dev/null; then
+  log "INFO" "index.html 页面已保存到 /tmp/navpage/index.html"
+else
+  log "ERROR" "index.html 页面下载失败"
+fi
