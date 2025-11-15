@@ -62,9 +62,9 @@ log "INFO" "生成导航页..."
 python3 "$NAVPAGE_DIR/private_html/generate_nav.py" >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "导航页生成完成"
 
-log "INFO" "开始生成 私有资源 首页..."
-python3 "$NAVPAGE_DIR/private_html/generate_portal_config_pinyin_mulu.py" >> "$MAIN_LOG" 2>&1 && \
-log "INFO" "私有资源 首页生成完成"
+#log "INFO" "开始生成 私有资源 首页..."
+#python3 "$NAVPAGE_DIR/private_html/generate_portal_config_pinyin_mulu.py" >> "$MAIN_LOG" 2>&1 && \
+#log "INFO" "私有资源 首页生成完成"
 
 GIST_cron_status="https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py"
 log "INFO" "正在生成 cron_status_html 页面..."
