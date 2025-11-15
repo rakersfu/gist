@@ -29,7 +29,7 @@ curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o
 #su - appuser -c "bash /tmp/txt_to_html.sh"
 
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o /tmp/del_log.sh
-#/tmp/txt_to_html.sh
+#/tmp/del_log.sh
 
 log "INFO" "开始生成 私有资源 首页..."
 python3 /tmp/navpage/private_html/generate_portal_config_pinyin_mulu.py >> "$MAIN_LOG" 2>&1 && \
