@@ -2,8 +2,8 @@
 set -e
 
 # 使用 Dockerfile 中定义的环境变量
-APP_HOME="${APP_HOME}"
-APP_LOGS="${APP_LOGS}"
+APP_HOME="${APP_HOME:-/tmp}"
+APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 MAIN_LOG="${MAIN_LOG:-$APP_LOGS/post_appuser.log}"
 WORK_DIR="${APP_HOME}"
 NAVPAGE_DIR="${NAVPAGE_DIR:-$APP_HOME/navpage}"
