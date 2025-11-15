@@ -18,12 +18,19 @@ log() {
 #su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
 #su - appuser -c "bash /tmp/hf_http_public.sh"
+
 #更新txt_to_html.sh
-curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o "$APP_HOME/txt_to_html.sh"
-#su - appuser -c "bash /tmp/txt_to_html.sh"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o "$APP_HOME/txt_to_html.sh" \
+  && log "INFO" "txt_to_html.sh 下载成功，保存到 $APP_HOME/txt_to_html.sh" \
+  || log "ERROR" "txt_to_html.sh 下载失败"
+#su - appuser -c "bash $APP_HOME/txt_to_html.sh"
+
 #更新del_log.sh
-curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o "$APP_HOME/del_log.sh"
-#su - appuser -c "bash /tmp/del_log.sh"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o "$APP_HOME/del_log.sh" \
+  && log "INFO" "del_log.sh 下载成功，保存到 $APP_HOME/del_log.sh" \
+  || log "ERROR" "del_log.sh 下载失败"
+#su - appuser -c "bash $APP_HOME/del_log.sh"
+
 
 # 执行原 update_hosts.sh 的内容
 # 下载 vless_public.txt
@@ -38,7 +45,7 @@ curl -fsSL https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY
 curl -fsSL https://raw.githubusercontent.com/rakersfu/gist/main/hosts.py -o "$WORK_DIR/hosts.py" \
   && log "INFO" "hosts.py 下载成功，保存到 $WORK_DIR/hosts.py" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download hosts.py" >> "$MAIN_LOG"
-# 执行 Python 脚本（无虚拟环境）
+# 执行 Python 脚本
 if python3 "$WORK_DIR/hosts.py"; then
   log "INFO" "hosts.py 执行成功"
 else
