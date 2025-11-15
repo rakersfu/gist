@@ -8,6 +8,8 @@ MAIN_LOG="${MAIN_LOG:-$APP_LOGS/post_appuser.log}"
 WORK_DIR="${APP_HOME}"
 NAVPAGE_DIR="${NAVPAGE_DIR:-$APP_HOME/navpage}"
 
+: > "$MAIN_LOG"  # 清空旧日志
+
 log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') [$1] $2" | tee -a "$MAIN_LOG"
 }
