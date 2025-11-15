@@ -14,7 +14,7 @@ log() {
 
 #完全注释项
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" -o "$NAVPAGE_DIR/index.html"
-#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" -o "/tmp/txt_to_html.sh"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" -o "/tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
 #su - appuser -c "bash /tmp/hf_http_public.sh"
 #更新txt_to_html.sh
