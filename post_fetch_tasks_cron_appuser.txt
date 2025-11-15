@@ -1,41 +1,52 @@
 #!/bin/bash
 set -e
 
-LOG_DIR="/tmp/logs"
-#mkdir -p "$LOG_DIR"
-MAIN_LOG="$LOG_DIR/post_appuser.log"
+# 使用 Dockerfile 中定义的环境变量
+APP_HOME="${APP_HOME}"
+APP_LOGS="${APP_LOGS}"
+MAIN_LOG="${MAIN_LOG:-$APP_LOGS/post_appuser.log}"
+WORK_DIR="${APP_HOME}"
+NAVPAGE_DIR="${NAVPAGE_DIR:-$APP_HOME/navpage}"
 
 log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') [$1] $2" | tee -a "$MAIN_LOG"
 }
 
-#log "INFO" "开始查找图标文件..."
-#find /tmp/navpage/icons -type f > /tmp/navpage/icons.txt
-#log "INFO" "图标文件列表已保存到 /tmp/navpage/icons.txt"
+#完全注释项
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" -o "$NAVPAGE_DIR/index.html"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" -o "/tmp/txt_to_html.sh"
+#su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
+#su - appuser -c "bash /tmp/hf_http_public.sh"
+#更新txt_to_html.sh
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o "$APP_HOME/txt_to_html.sh"
+#su - appuser -c "bash /tmp/txt_to_html.sh"
+#更新del_log.sh
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o "$APP_HOME/del_log.sh"
+#su - appuser -c "bash /tmp/del_log.sh"
 
-#log "INFO" "更新 hosts 脚本已准备，暂未启用"
-#cat /tmp/update_hosts.sh.txt | tee /tmp/update_hosts.sh > /dev/null
+#执行原update_hosts.sh的内容
+# 下载 vless_public.txt
+curl -fsSL https://raw.githubusercontent.com/hans-thomas/v2ray-subscription/master/servers.txt -o "$WORK_DIR/vless_public.txt" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download vless_public.txt" >> "$MAIN_LOG"
+# 下载 karing_public.txt
+curl -fsSL https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt -o "$WORK_DIR/karing_public.txt" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download karing_public.txt" >> "$MAIN_LOG"
+# 下载 hosts.py
+curl -fsSL https://gist.githubusercontent.com/rakersfu/a9dea0121fed97ab6b366555f4c019bc/raw -o "$WORK_DIR/hosts.py" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download hosts.py" >> "$MAIN_LOG"
+# 执行 Python 脚本（无虚拟环境）
+python3 "$WORK_DIR/hosts.py"
 
 log "INFO" "开始生成 RSS 新闻..."
-python3 /tmp/navpage/private_html/rss_news.py >> "$MAIN_LOG" 2>&1 && \
+python3 "$NAVPAGE_DIR/private_html/rss_news.py" >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "RSS 新闻生成完成"
 
 log "INFO" "生成导航页..."
-python3 /tmp/navpage/private_html/generate_nav.py >> "$MAIN_LOG" 2>&1 && \
+python3 "$NAVPAGE_DIR/private_html/generate_nav.py" >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "导航页生成完成"
 
-#su - appuser -c "bash /tmp/update_sh.sh > /tmp/logs/update_sh.log 2>&1"
-#su - appuser -c "bash /tmp/hf_http_public.sh"
-
-#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" -o /tmp/navpage/index.html
-curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o /tmp/txt_to_html.sh
-#su - appuser -c "bash /tmp/txt_to_html.sh"
-
-curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o /tmp/del_log.sh
-#/tmp/del_log.sh
-
 log "INFO" "开始生成 私有资源 首页..."
-python3 /tmp/navpage/private_html/generate_portal_config_pinyin_mulu.py >> "$MAIN_LOG" 2>&1 && \
+python3 "$NAVPAGE_DIR/private_html/generate_portal_config_pinyin_mulu.py" >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "私有资源 首页生成完成"
 
 GIST_cron_status="https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py"
@@ -48,8 +59,8 @@ fi
 
 GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
 log "INFO" "正在下载 index.html 页面..."
-if curl -s "$GIST_index_html" | tee /tmp/navpage/index.html > /dev/null; then
-  log "INFO" "index.html 页面已保存到 /tmp/navpage/index.html"
+if curl -s "$GIST_index_html" | tee "$NAVPAGE_DIR/index.html" > /dev/null; then
+  log "INFO" "index.html 页面已保存到 $NAVPAGE_DIR/index.html"
 else
   log "ERROR" "index.html 页面下载失败"
 fi
