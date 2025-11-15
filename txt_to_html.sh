@@ -107,5 +107,8 @@ log "📊 缺失文件: $FAIL_COUNT 个"
 log "⏱️ 总耗时: ${DURATION} 秒"
 
 log "INFO" "开始生成 私有资源 首页..."
-python3 "$APP_HOME/navpage/private_html/generate_portal_config_pinyin_mulu.py" >> "$LOG_FILE" 2>&1 && \
-log "INFO" "私有资源 首页生成完成"
+if python3 "$APP_HOME/navpage/private_html/generate_portal_config_pinyin_mulu.py" >> "$LOG_FILE" 2>&1; then
+    log "INFO" "私有资源 首页生成完成"
+else
+    log "ERROR" "私有资源 首页生成失败"
+fi
