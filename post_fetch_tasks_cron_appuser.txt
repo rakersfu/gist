@@ -35,7 +35,7 @@ curl -fsSL https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY
   && log "INFO" "karing_public.txt 下载成功，保存到 $WORK_DIR/karing_public.txt" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download karing_public.txt" >> "$MAIN_LOG"
 # 下载 hosts.py
-curl -fsSL https://gist.githubusercontent.com/rakersfu/a9dea0121fed97ab6b366555f4c019bc/raw -o "$WORK_DIR/hosts.py" \
+curl -fsSL https://raw.githubusercontent.com/rakersfu/gist/main/hosts.py -o "$WORK_DIR/hosts.py" \
   && log "INFO" "hosts.py 下载成功，保存到 $WORK_DIR/hosts.py" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download hosts.py" >> "$MAIN_LOG"
 # 执行 Python 脚本（无虚拟环境）
