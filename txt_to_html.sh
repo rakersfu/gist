@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# 兜底环境变量定义
 APP_HOME="${APP_HOME:-/tmp}"
 APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 
@@ -19,7 +18,7 @@ TXT_FILES=(
     "${APP_LOGS}/hf_http_public.log"
     "${APP_LOGS}/hfactive_private.log"
     "${APP_LOGS}/httpd.log"
-    "${APP_LOGS}/post_appuser.log"    
+    "${APP_LOGS}/post_appuser.log"
     "${APP_LOGS}/rsyslog.log"
     "${APP_LOGS}/seven.log"
     "${APP_LOGS}/supervisord.log"
@@ -40,6 +39,13 @@ START_TIME=$(date +%s)
 
 : > "$LOG_FILE"
 
+# === 新增：统一修改日志文件权限 ===
+for FILE in "${TXT_FILES[@]}"; do
+    if [ -f "$FILE" ]; then
+        chmod 644 "$FILE" 2>/dev/null
+    fi
+done
+
 # === 主转换逻辑 ===
 for FILE in "${TXT_FILES[@]}"; do
     if [ -f "$FILE" ]; then
@@ -50,12 +56,11 @@ for FILE in "${TXT_FILES[@]}"; do
             echo "<!DOCTYPE html><html lang=\"zh\"><head><meta charset=\"UTF-8\"><title>$BASENAME</title>"
             echo "<style>body{font-family:sans-serif;background:#f4f6f9;padding:2rem;}pre{background:white;padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);white-space:pre-wrap;word-wrap:break-word;}</style></head><body>"
             echo "<h1>$BASENAME</h1><pre>"
-            # 转义特殊字符，保证浏览器能显示
             sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' "$FILE"
             echo "</pre></body></html>"
         } > "$OUT"
 
-        chown appuser:appuser "$OUT"
+        chown appuser:appuser "$OUT" 2>/dev/null
         chmod 644 "$OUT"
         log "✅ 已生成: $OUT"
         ((SUCCESS_COUNT++))
