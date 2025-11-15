@@ -20,6 +20,7 @@ log() {
 #su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
 #su - appuser -c "bash /tmp/hf_http_public.sh"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o "/tmp/txt_to_html.sh"
 
 #更新txt_to_html.sh
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o "$APP_HOME/txt_to_html.sh" \
