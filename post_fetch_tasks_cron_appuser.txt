@@ -25,6 +25,7 @@ python3 /tmp/navpage/private_html/generate_nav.py >> "$MAIN_LOG" 2>&1 && \
 log "INFO" "导航页生成完成"
 
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/logs/update_sh.log 2>&1"
+#su - appuser -c "bash /tmp/hf_http_public.sh"
 
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" -o /tmp/navpage/index.html
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o /tmp/txt_to_html.sh
