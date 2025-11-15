@@ -10,8 +10,8 @@ AUDIT_LOG="$LOG_DIR/deletion_audit.log"
 touch "$AUDIT_LOG"
 #chown appuser:appuser "$AUDIT_LOG"
 #chmod 644 "$AUDIT_LOG"
-chown -R appuser:appuser "$LOG_DIR"
-chmod -R u+rwX,go+rX "$LOG_DIR"
+#chown -R appuser:appuser "$LOG_DIR"
+#chmod -R u+rwX,go+rX "$LOG_DIR"
 
 # 写入审计日志
 {
