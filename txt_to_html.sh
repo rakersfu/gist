@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 APP_HOME="${APP_HOME:-/tmp}"
 APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 
@@ -108,13 +106,10 @@ log "📊 生成成功: $SUCCESS_COUNT 个"
 log "📊 缺失文件: $FAIL_COUNT 个"
 log "⏱️ 总耗时: ${DURATION} 秒"
 
-# === 最后执行 generate_portal_config_pinyin_mulu.py ===
+# === 融入执行 Python 文件 ===
 log "INFO" "开始生成 私有资源 首页..."
-
-set +e
 if python3 "$APP_HOME/navpage/private_html/generate_portal_config_pinyin_mulu.py" >> "$LOG_FILE" 2>&1; then
     log "INFO" "私有资源 首页生成完成"
 else
     log "ERROR" "私有资源 首页生成失败"
 fi
-set -e
