@@ -25,18 +25,25 @@ curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" -o
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/del_log.sh" -o "$APP_HOME/del_log.sh"
 #su - appuser -c "bash /tmp/del_log.sh"
 
-#执行原update_hosts.sh的内容
+# 执行原 update_hosts.sh 的内容
 # 下载 vless_public.txt
 curl -fsSL https://raw.githubusercontent.com/hans-thomas/v2ray-subscription/master/servers.txt -o "$WORK_DIR/vless_public.txt" \
+  && log "INFO" "vless_public.txt 下载成功，保存到 $WORK_DIR/vless_public.txt" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download vless_public.txt" >> "$MAIN_LOG"
 # 下载 karing_public.txt
 curl -fsSL https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt -o "$WORK_DIR/karing_public.txt" \
+  && log "INFO" "karing_public.txt 下载成功，保存到 $WORK_DIR/karing_public.txt" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download karing_public.txt" >> "$MAIN_LOG"
 # 下载 hosts.py
 curl -fsSL https://gist.githubusercontent.com/rakersfu/a9dea0121fed97ab6b366555f4c019bc/raw -o "$WORK_DIR/hosts.py" \
+  && log "INFO" "hosts.py 下载成功，保存到 $WORK_DIR/hosts.py" \
   || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download hosts.py" >> "$MAIN_LOG"
 # 执行 Python 脚本（无虚拟环境）
-python3 "$WORK_DIR/hosts.py"
+if python3 "$WORK_DIR/hosts.py"; then
+  log "INFO" "hosts.py 执行成功"
+else
+  log "ERROR" "hosts.py 执行失败"
+fi
 
 log "INFO" "开始生成 RSS 新闻..."
 python3 "$NAVPAGE_DIR/private_html/rss_news.py" >> "$MAIN_LOG" 2>&1 && \
