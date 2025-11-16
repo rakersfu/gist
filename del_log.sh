@@ -2,7 +2,7 @@
 # del_log.sh - 静默删除 /tmp/logs/ 下除指定文件外的所有 .log 文件，并限制审计日志大小
 
 LOG_DIR="${APP_LOGS:-/tmp/logs}"
-EXCLUDE_FILES=("entrypoint.log" "seven.log" "deletion_audit.log" "cron.log" \
+EXCLUDE_FILES=("entrypoint.log" "seven.log" "deletion_audit.log" "cron.log" "unzip.log" \
                "rsyslog.log" "app.log" "httpd.log" "ttyd.log" "supervisord.log")
 AUDIT_LOG="$LOG_DIR/deletion_audit.log"
 
