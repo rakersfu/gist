@@ -219,9 +219,10 @@ crontab -u appuser -e
 python /tmp/navpage/generate_nav.py
 单次测试文件：su - appuser -c "python3 /tmp/navpage/private_html/generate_portal_config.py"
               su - appuser -c "python3 /tmp/navpage/private_html/rss_news.py"
-单次测试.sh脚本：su - appuser -c "bash /tmp/run_nav_update.sh"
-                 su - appuser -c "bash /tmp/wedav.sh"
-                 su - appuser -c "bash /tmp/wedav_sub.sh"
+              su - appuser -c "python3 /tmp/navpage/private_html/wedav_list_tar.py"
+单次测试.sh脚本：su - appuser -c "bash /tmp/update_sh.sh"
+                 su - appuser -c "bash /tmp/hf_http_public.sh"
+                 su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
                  su - appuser -c "bash /tmp/txt_to_html.sh"
 
 # 写入文件（保持权限与属主）
