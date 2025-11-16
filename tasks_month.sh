@@ -15,4 +15,6 @@ log() {
 }
 
 #find /tmp/navpage -type f > /tmp/navpage/navpage.txt
-cat /etc/cron.d/root-cron | tee /tmp/navpage/root-cron1.txt > /dev/null
+cat /etc/cron.d/root-cron | tee /tmp/navpage/root-cron.txt \
+  && log "INFO" "root-cron 内容成功保存到 /tmp/navpage/root-cron.txt 并追加到日志文件 $MAIN_LOG" \
+  || log "ERROR" "root-cron 内容保存或日志追加失败"
