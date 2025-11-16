@@ -18,6 +18,7 @@ log() {
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" -o "$NAVPAGE_DIR/index.html"
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" -o "/tmp/post_fetch_tasks_cron_appuser.sh"
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee "/tmp/update_sh.sh" && echo "下载完成"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/post_fetch_tasks_cron_appuser.sh > /dev/null 2>&1
 #su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
 #su - appuser -c "bash /tmp/hf_http_public.sh"
