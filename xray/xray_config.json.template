@@ -19,14 +19,14 @@
           {
             "email": "hf-xhttp",
             "flow": "",
-            "id": "${UUID}"
+            "id": "${uuid}"
           }
         ]
       },
       "streamSettings": {
         "network": "xhttp",
         "xhttpSettings": {
-          "host": "${DOMAIN}",
+          "host": "${domain}",
           "mode": "auto",
           "path": "/"
         }
