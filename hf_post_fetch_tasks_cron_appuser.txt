@@ -1,0 +1,71 @@
+#!/bin/bash
+set -e
+
+# 使用 Dockerfile 中定义的环境变量
+APP_HOME="${APP_HOME:-/tmp}"
+APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
+MAIN_LOG="${MAIN_LOG:-$APP_LOGS/post_appuser.log}"
+WORK_DIR="${APP_HOME}"
+NAVPAGE_DIR="${NAVPAGE_DIR:-$APP_HOME/navpage}"
+
+: > "$MAIN_LOG"  # 清空旧日志
+
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') [$1] $2" | tee -a "$MAIN_LOG"
+}
+
+#完全注释项
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" | tee /tmp/navpage/index.html > /dev/null 2>&1 && echo "下载完成"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" | tee /tmp/post_fetch_tasks_cron_appuser.sh > /dev/null 2>&1 && echo "下载完成"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/update_sh.sh > /dev/null 2>&1 && echo "下载完成"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/update_sh.sh > /dev/null 2>&1 && echo "下载完成"
+#su - appuser -c "bash /tmp/update_sh.sh"
+#su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
+#su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
+#su - appuser -c "bash /tmp/hf_http_public.sh"
+#su - appuser -c "bash /tmp/keepalive.sh"
+#curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" | tee /tmp/txt_to_html.sh > /dev/null 2>&1 && echo "下载完成"
+
+# 执行原 update_hosts.sh 的内容
+# 下载 vless_public.txt
+curl -fsSL https://raw.githubusercontent.com/hans-thomas/v2ray-subscription/master/servers.txt -o "$WORK_DIR/vless_public.txt" \
+  && log "INFO" "vless_public.txt 下载成功，保存到 $WORK_DIR/vless_public.txt" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download vless_public.txt" >> "$MAIN_LOG"
+# 下载 karing_public.txt
+curl -fsSL https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_BASE64.txt -o "$WORK_DIR/karing_public.txt" \
+  && log "INFO" "karing_public.txt 下载成功，保存到 $WORK_DIR/karing_public.txt" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download karing_public.txt" >> "$MAIN_LOG"
+# 下载 hosts.py
+curl -fsSL https://raw.githubusercontent.com/rakersfu/gist/main/hosts.py -o "$WORK_DIR/hosts.py" \
+  && log "INFO" "hosts.py 下载成功，保存到 $WORK_DIR/hosts.py" \
+  || echo "[$(date '+%Y-%m-%d %H:%M:%S')] Failed to download hosts.py" >> "$MAIN_LOG"
+# 执行 Python 脚本
+if python3 "$WORK_DIR/hosts.py"; then
+  log "INFO" "hosts.py 执行成功"
+else
+  log "ERROR" "hosts.py 执行失败"
+fi
+
+log "INFO" "开始生成 RSS 新闻..."
+python3 "$NAVPAGE_DIR/private_html/rss_news.py" >> "$MAIN_LOG" 2>&1 && \
+log "INFO" "RSS 新闻生成完成"
+
+log "INFO" "生成导航页..."
+python3 "$NAVPAGE_DIR/private_html/generate_nav.py" >> "$MAIN_LOG" 2>&1 && \
+log "INFO" "导航页生成完成"
+
+GIST_cron_status="https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py"
+log "INFO" "正在生成 cron_status_html 页面..."
+if curl -s "$GIST_cron_status" | python3 > /dev/null; then
+  log "INFO" "cron_status_html 页面已生成"
+else
+  log "ERROR" "cron_status_html 页面生成失败"
+fi
+
+GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
+log "INFO" "正在下载 index.html 页面..."
+if curl -s "$GIST_index_html" | tee "$NAVPAGE_DIR/index.html" > /dev/null; then
+  log "INFO" "index.html 页面已保存到 $NAVPAGE_DIR/index.html"
+else
+  log "ERROR" "index.html 页面下载失败"
+fi
