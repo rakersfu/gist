@@ -20,7 +20,7 @@ TXT_FILES=(
     "${APP_LOGS}/httpd.log"
     "${APP_LOGS}/post_appuser.log"
     "${APP_LOGS}/rsyslog.log"
-    "${APP_LOGS}/seven.log"
+    "${APP_LOGS}/xray.log"
     "${APP_LOGS}/supervisord.log"
     "${APP_LOGS}/ttyd.log"
     "${APP_LOGS}/unzip.log"
