@@ -17,7 +17,7 @@
         "decryption": "none",
         "clients": [
           {
-            "email": "hf-ws",
+            "email": "hf-xhttp",
             "id": "${uuid}"
           }
         ]
