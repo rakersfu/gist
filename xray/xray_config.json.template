@@ -10,25 +10,25 @@
   },
   "inbounds": [
     {
-      "listen": null,
+      "listen": "0.0.0.0",
       "port": 7860,
       "protocol": "vless",
       "settings": {
         "decryption": "none",
         "clients": [
           {
-            "email": "hf-xhttp",
-            "flow": "",
+            "email": "hf-ws",
             "id": "${uuid}"
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "xhttpSettings": {
-          "host": "${domain_hf}",
-          "mode": "auto",
-          "path": "/"
+        "network": "ws",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "${domain_hf}"
+          }
         }
       },
       "sniffing": {
@@ -62,7 +62,7 @@
       "tag": "force-to-ip",
       "protocol": "freedom",
       "settings": {
-        "redirect": "127.0.0.1:0"
+        "redirect": "127.0.0.1:7860"
       }
     }
   ]
