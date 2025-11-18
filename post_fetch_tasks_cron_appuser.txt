@@ -23,6 +23,7 @@ log() {
 #su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
 #su - appuser -c "bash /tmp/hf_http_public.sh"
+#su - appuser -c "bash /tmp/txt_to_html.sh"
 #su - appuser -c "bash /tmp/keepalive.sh"
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" | tee /tmp/txt_to_html.sh > /dev/null 2>&1 && echo "下载完成"
 
