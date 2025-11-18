@@ -27,6 +27,7 @@ log() {
 #su - appuser -c "bash /tmp/txt_to_html.sh"
 #su - appuser -c "bash /tmp/keepalive.sh"
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" | tee /tmp/txt_to_html.sh > /dev/null 2>&1 && echo "下载完成"
+#su - appuser -c 'curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py" | python3 > /dev/null'
 
 # 执行原 update_hosts.sh 的内容
 # 下载 vless_public.txt
