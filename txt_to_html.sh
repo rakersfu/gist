@@ -1,7 +1,12 @@
 #!/bin/bash
 
-APP_HOME="${APP_HOME:-/tmp}"
-APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
+# 加载容器启动时保存的环境变量
+if [ -f /etc/container_env.sh ]; then
+    source /etc/container_env.sh
+fi
+
+#APP_HOME="${APP_HOME:-/tmp}"
+#APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 
 TXT_FILES=(
     "${APP_HOME}/domains.txt"
