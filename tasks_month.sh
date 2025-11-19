@@ -1,9 +1,14 @@
 #!/bin/bash
 set -e
 
+# 加载容器启动时保存的环境变量
+if [ -f /etc/container_env.sh ]; then
+    source /etc/container_env.sh
+fi
+
 # 使用 Dockerfile 中定义的环境变量
-APP_HOME="${APP_HOME:-/tmp}"
-APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
+#APP_HOME="${APP_HOME:-/tmp}"
+#APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 MAIN_LOG="${MAIN_LOG:-$APP_LOGS/tasks_month.log}"
 WORK_DIR="${APP_HOME}"
 NAVPAGE_DIR="${NAVPAGE_DIR:-$APP_HOME/navpage}"
