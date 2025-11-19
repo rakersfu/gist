@@ -1,7 +1,9 @@
 #!/bin/bash
 # truncate_logs.sh - 遍历 truncate_list.txt 中的日志文件，截断并记录审计日志
 
-LOG_DIR="/tmp/logs"
+APP_HOME="${APP_HOME:-/tmp}"
+APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
+LOG_DIR="$APP_LOGS"
 AUDIT_LOG="$LOG_DIR/truncate_audit.log"
 TMP_LIST="$LOG_DIR/truncate_list.txt"
 
