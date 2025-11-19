@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# 加载容器启动时保存的环境变量
+if [ -f /etc/container_env.sh ]; then
+    source /etc/container_env.sh
+fi
+
 #find /tmp/navpage -type f > /tmp/navpage/navpage.txt
 cat /etc/cron.d/root-cron | tee /tmp/root-cron.txt > /dev/null
 
