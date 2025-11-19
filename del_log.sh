@@ -1,8 +1,13 @@
 #!/bin/bash
 # del_log.sh - 静默删除 /tmp/logs/ 下除指定文件外的所有 .log 文件，并限制审计日志大小
 
-APP_HOME="${APP_HOME:-/tmp}"
-APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
+# 加载容器启动时保存的环境变量
+if [ -f /etc/container_env.sh ]; then
+    source /etc/container_env.sh
+fi
+
+#APP_HOME="${APP_HOME:-/tmp}"
+#APP_LOGS="${APP_LOGS:-$APP_HOME/logs}"
 LOG_DIR="$APP_LOGS"
 EXCLUDE_FILES=("app.log" "cron.log" "deletion_audit.log" "entrypoint.log" "httpd.log" \
                "rsyslog.log" "seven.log" "supervisord.log" "truncate_audit.log" "ttyd.log" "unzip.log")
