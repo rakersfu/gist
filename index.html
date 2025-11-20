@@ -243,6 +243,7 @@ su - appuser -c "bash /tmp/keepalive.sh"
 su - appuser -c "bash /tmp/truncate_logs.sh"
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" | tee /tmp/txt_to_html.sh > /dev/null 2>&1 && echo "下载完成"
 su - appuser -c 'curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py" | python3 > /dev/null'
+printenv > /etc/container_env.sh
   
 # 写入文件（保持权限与属主）
 cat /tmp/lun.txt | tee /etc/logrotate.d/cloudflared > /dev/null
