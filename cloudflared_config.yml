@@ -1,0 +1,25 @@
+# Cloudflared 配置文件 (config.yml)
+
+tunnel: ${TUNNEL_ID}
+credentials-file: /root/.cloudflared/${TUNNEL_ID}.json
+
+no-autoupdate: true
+protocol: auto
+
+logfile: /tmp/logs/tunnel.log
+loglevel: info
+
+ingress:
+  - hostname: ttyd_tunel.rrake99.eu.org
+    service: http://localhost:2777
+
+  - hostname: ttyd.rrake99.eu.org
+    service: http://localhost:7681
+
+  - hostname: ttydpage.rrake99.eu.org
+    service: http://localhost:8080
+
+  - hostname: ttyd_jk.rrake99.eu.org
+    service: http://localhost:7860
+
+  - service: http_status:404
