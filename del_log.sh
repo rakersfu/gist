@@ -45,6 +45,6 @@ touch "$AUDIT_LOG"
 tmpfile=$(mktemp)
 tail -n 100 "$AUDIT_LOG" > "$tmpfile" && mv "$tmpfile" "$AUDIT_LOG"
 
-# 修复属主和权限，确保 appuser 可读写
+# 修复属主和权限，确保 APP_USER:APP_GROUP 可读写
 chown -R $APP_USER:$APP_GROUP "$LOG_DIR"
 chmod -R u+rwX,go+rX "$LOG_DIR"
