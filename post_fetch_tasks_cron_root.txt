@@ -9,4 +9,4 @@ fi
 #find /tmp/navpage -type f > /tmp/navpage/navpage.txt
 cat /etc/cron.d/root-cron | tee /tmp/root-cron.txt > /dev/null
 
-chown -R appuser:appuser /tmp/logs && chmod -R u+rwX,go+rX /tmp/logs
+chown -R $APP_USER:$APP_GROUP /tmp/logs && chmod -R u+rwX,go+rX /tmp/logs
