@@ -8,9 +8,9 @@ AUDIT_LOG="$LOG_DIR/deletion_audit.log"
 
 # 确保审计日志文件存在并设置属主和权限
 touch "$AUDIT_LOG"
-#chown appuser:appuser "$AUDIT_LOG"
+#chown $APP_USER:$APP_GROUP "$AUDIT_LOG"
 #chmod 644 "$AUDIT_LOG"
-#chown -R appuser:appuser "$LOG_DIR"
+#chown -R $APP_USER:$APP_GROUP "$LOG_DIR"
 #chmod -R u+rwX,go+rX "$LOG_DIR"
 
 # 写入审计日志
@@ -42,8 +42,8 @@ touch "$AUDIT_LOG"
 tmpfile=$(mktemp)
 tail -n 100 "$AUDIT_LOG" > "$tmpfile" && mv "$tmpfile" "$AUDIT_LOG"
 
-# 再次修复属主和权限，确保 appuser 可读写
-#chown appuser:appuser "$AUDIT_LOG"
+# 再次修复属主和权限，确保 APP_USER:APP_GROUP 可读写
+#chown $APP_USER:$APP_GROUP "$AUDIT_LOG"
 #chmod 644 "$AUDIT_LOG"
-chown -R appuser:appuser "$LOG_DIR"
+chown -R $APP_USER:$APP_GROUP "$LOG_DIR"
 chmod -R u+rwX,go+rX "$LOG_DIR"
