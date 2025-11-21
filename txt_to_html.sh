@@ -65,7 +65,7 @@ for FILE in "${TXT_FILES[@]}"; do
             echo "</pre></body></html>"
         } > "$OUT"
 
-        chown appuser:appuser "$OUT" 2>/dev/null
+        chown $APP_USER:$APP_GROUP "$OUT" 2>/dev/null
         chmod 644 "$OUT"
         log "✅ 已生成: $OUT"
         ((SUCCESS_COUNT++))
