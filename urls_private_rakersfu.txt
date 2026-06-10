@@ -1,2 +1,2 @@
 # 私有 Hugging Face Space 激活列表
-PRIVATE https://rakersfu-rakelinux.hf.space
+PRIVATE https://rakersfu-n8n.hf.space
