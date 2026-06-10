@@ -24,6 +24,7 @@ log() {
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/update_sh.sh > /dev/null 2>&1 && echo "下载完成"
 #curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/truncate_logs.sh" | tee /tmp/truncate_logs.sh > /dev/null 2>&1 && echo "下载完成"
 #curl -s "https://cdn.gh-proxy.org/https://raw.githubusercontent.com/rakersfu/gist/main/index.html" | tee /share/Public/navpage/index.html > /dev/null 2>&1 && echo "下载完成"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/upload_to_github.sh" | tee /tmp/upload_to_github.sh > /dev/null 2>&1
 #su - appuser -c "bash /tmp/update_sh.sh"
 #su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
 #su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
