@@ -114,7 +114,7 @@
       <a href="supervisord.log.html">supervisord日志</a>
       <a href="ttyd.log.html">ttyd日志</a>
       <a href="httpd.log.html">httpd日志</a>
-      <a href="/knowledge/index.html">专业知识</a>
+      <a href="app.log.html">app日志</a>
       <a href="/private_html/post_appuser.log.html">post_appuserr日志</a>
       <a href="rsyslog.log.html">rsyslog日志</a>
       <a href="unzip.log.html">unzip日志</a>
@@ -221,7 +221,6 @@ python /tmp/navpage/generate_nav.py
 单次测试文件：su - appuser -c "python3 /tmp/navpage/private_html/generate_portal_config.py"
               su - appuser -c "python3 /tmp/navpage/private_html/rss_news.py"
               su - appuser -c "python3 /tmp/navpage/private_html/wedav_list_tar.py"
-              su - appuser -c "python3 /tmp/navpage/knowledge/generate_portal_config_grouped_collapsed.py"
 单次测试.sh脚本：su - appuser -c "bash /tmp/update_sh.sh"
                  su - appuser -c "bash /tmp/hf_http_public.sh"
                  su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
@@ -311,6 +310,9 @@ tar -xzvf /opt/v2ray-quote.tar.gz
 
 # 常用数据地址
 https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt
+
+# 从Google网盘下载文件
+python3 -m gdown "https://drive.google.com/uc?id=1QPubfRmEKU1n2wfcNhapQLoaRYZ_3kNn" -O output_filename
   
 # 修复中文注释乱码
 iconv -f GBK -t UTF-8 install_engine_and_compose.sh -o fixed.sh
@@ -324,10 +326,6 @@ chmod +x install_engine_and_compose.sh
 
 # 更新GFW列表
 https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt
-
-# Windows命令
-启动命令：按Win + R     然后输入shell:startup
-
   
 # 搜索引用
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
