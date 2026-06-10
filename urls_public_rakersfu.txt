@@ -1,4 +1,1 @@
-PUBLIC https://rakersfu-n8n.hf.space
-PUBLIC https://rakersfu-cron.hf.space
-PUBLIC https://rakersfu-panel.hf.space/app
-PUBLIC https://huggingface.co/spaces/rakersfu/onetts/tree/main
+PUBLIC https://ideogram-ai-ideogram4.hf.space
