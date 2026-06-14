@@ -326,6 +326,14 @@ chmod +x install_engine_and_compose.sh
 
 # 更新GFW列表
 https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt
+
+#从github及gitee下载
+#Windows平台
+Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py
+Invoke-WebRequest -Uri https://gitee.com/rakerose/gist/raw/master/get-pip.py -OutFile get-pip.py
+#Linux平台
+curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl -L https://gitee.com/rakerose/gist/raw/master/get-pip.py -o get-pip.py
   
 # 搜索引用
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
