@@ -336,7 +336,8 @@ curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 curl -L https://gitee.com/rakerose/gist/raw/master/get-pip.py -o get-pip.py
 
 #HF登录与模型下载
-Powershell命令
+#Powershell命令
+pip install huggingface_hub
 $env:HF_TOKEN="hf_token"
 hf auth login
 hf download openbmb/VoxCPM2
