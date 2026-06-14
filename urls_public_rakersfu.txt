@@ -1,1 +1,2 @@
 PUBLIC https://ideogram-ai-ideogram4.hf.space
+PUBLIC https://huggingface.co/spaces/OpenMOSS-Team/MOSS-TTS-v1.5
