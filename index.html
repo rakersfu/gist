@@ -334,7 +334,13 @@ Invoke-WebRequest -Uri https://gitee.com/rakerose/gist/raw/master/get-pip.py -Ou
 #Linux平台
 curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 curl -L https://gitee.com/rakerose/gist/raw/master/get-pip.py -o get-pip.py
-  
+
+#HF登录与模型下载
+Powershell命令
+$env:HF_TOKEN="hf_token"
+hf auth login
+hf download openbmb/VoxCPM2
+
 # 搜索引用
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
 </code></pre>
