@@ -2,8 +2,8 @@ name: sync_to_gitee_dir
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '10 0 3 * *'
+  #schedule:
+    #- cron: '10 0 3 * *'
 
 jobs:
   sync:
