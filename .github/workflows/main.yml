@@ -1,0 +1,59 @@
+name: sync_to_gitee_dir
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 0 3 * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout GitHub repo
+      uses: actions/checkout@v4
+      with:
+        # 如果你希望 checkout 特定分支，可在这里指定 ref
+        fetch-depth: 0
+
+    - name: Clone Gitee repo
+      env:
+        GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        GITEE_USERNAME: ${{ secrets.GITEE_USERNAME }}
+        GITEE_REPO: "rakerose/gist"    # 如果目标 Gitee 仓库不同，请修改这里
+        GITEE_BRANCH: "master"         # 如果 Gitee 使用其他默认分支，请修改这里
+      run: |
+        # 使用 token 克隆到 gitee_repo 目录
+        git clone https://oauth2:${GITEE_TOKEN}@gitee.com/${GITEE_REPO}.git gitee_repo
+        cd gitee_repo
+        git config user.name "${GITEE_USERNAME}"
+        git config user.email "action@github.com"
+        # 切到目标分支（如果不存在则创建）
+        git checkout ${GITEE_BRANCH} || git checkout -b ${GITEE_BRANCH}
+
+    - name: Sync repository root to Gitee (mirror)
+      run: |
+        # 同步当前仓库根目录到 gitee_repo 根（排除 .git、gitee_repo 本身和 workflow 文件目录）
+        # 修改或添加 --exclude 以过滤你不想同步的文件/目录
+        rsync -av --delete \
+          --exclude='.git' \
+          --exclude='gitee_repo' \
+          --exclude='.github/workflows' \
+          ./ gitee_repo/
+
+    - name: Commit & Push to Gitee (only if changed)
+      env:
+        GITEE_BRANCH: "master"  # 与上面保持一致
+      run: |
+        cd gitee_repo
+        git add --all
+
+        # 如果没有 staged 的变更则退出
+        if git diff --cached --quiet; then
+          echo "No changes to commit."
+          exit 0
+        fi
+
+        # 提交并推送
+        git commit -m "sync_to_gitee_dir: sync from GitHub ${GITHUB_REPOSITORY}@${GITHUB_SHA}"
+        git push origin ${GITEE_BRANCH}
