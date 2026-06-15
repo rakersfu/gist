@@ -20,7 +20,7 @@ jobs:
       env:
         GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
         GITEE_USERNAME: ${{ secrets.GITEE_USERNAME }}
-        GITEE_REPO: "rakerose/gist"    # 如果目标 Gitee 仓库不同，请修改这里
+        GITEE_REPO: "rakerose/gist1"    # 如果目标 Gitee 仓库不同，请修改这里
         GITEE_BRANCH: "master"         # 如果 Gitee 使用其他默认分支，请修改这里
       run: |
         # 使用 token 克隆到 gitee_repo 目录
@@ -39,6 +39,7 @@ jobs:
           --exclude='.git' \
           --exclude='gitee_repo' \
           --exclude='.github/workflows' \
+          --exclude='xray' \
           ./ gitee_repo/
 
     - name: Commit & Push to Gitee (only if changed)
