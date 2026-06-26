@@ -347,6 +347,9 @@ $env:HF_TOKEN="hf_token"
 hf auth login
 hf download openbmb/VoxCPM2
 
+#创建软连接
+mklink /J "C:\Users\furui\.ollama\models" "D:\installsoft\ollamamodels"
+
 #modelscope
 modelscope download --model 'OpenBMB/VoxCPM2' --local_dir 'C:\Users\furui\.cache\huggingface\hub'
 
