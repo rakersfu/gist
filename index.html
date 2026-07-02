@@ -101,33 +101,34 @@
     <h2>图标设计细节</h2>
     <p>图标采用简化的熊猫脸部图案，底部新增的熊猫脸部以几何方式呈现，耳朵、眼斑与鼻部以黑白配色设计，富有辨识度但不具象。图案下方有象征着支持的设计，寓意着我妻子对项目的坚实支持与托举。整体风格仍保持扁平化设计，使用蓝白主调并加入黑白点缀，确保视觉平衡且富有情感深度。</p>
 
-    <div class="nav-link nav-link-1">
-      <a href="nav.html">访问我的个人导航页</a>
-      <a href="jianli.html">个人简历</a>
-      <a href="app.log.html">app日志</a>
-      <a href="entrypoint.log.html">entrypoint日志</a>
-      <a href="/private_html/cron.log.html">cron日志</a>
-      <a href="cron_status.html">查看定时任务状态</a>
-      <a href="/private_html/deletion_audit.log.html">deletion_audit日志</a>
-      <a href="hf_http_private.log.html">hf_http_private日志</a>
-      <a href="hf_http_public.log.html">hf_http_public日志</a>
-      <a href="supervisord.log.html">supervisord日志</a>
-      <a href="ttyd.log.html">ttyd日志</a>
-      <a href="httpd.log.html">httpd日志</a>
-      <a href="app.log.html">app日志</a>
-      <a href="/private_html/post_appuser.log.html">post_appuserr日志</a>
-      <a href="rsyslog.log.html">rsyslog日志</a>
-      <a href="unzip.log.html">unzip日志</a>
-      <a href="github_push.html">Github推送教程</a>
-      <a href="github_token.html">Github推送token</a>
-      <a href="crontab.html">定时任务配置</a>      
-      <a href="/private_html/index.html">私有资源</a>
-      <a href="rss_news.html">RSS新闻</a>
-      <a href="/private_html/v2raya_offline_install.html">v2rayA离线部署</a>
-      <a href="/knowledge/windows/setproxy.html">代理设置</a>
-      <a href="get-pip.html">pip安装方法汇总</a>      
-      <a href="domains.txt.html">domains.txt</a>
-    </div>
+    <script>
+      fetch('nav-links.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`加载 nav-links.json 失败: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const container = document.getElementById('navContainer');
+          data.links.forEach(link => {
+            const a = document.createElement('a');
+            a.href = link.href;
+            a.textContent = link.text;
+            
+            // 可选：为不存在的文件添加禁用样式
+            // fetch(link.href, { method: 'HEAD' })
+            //   .catch(() => a.style.opacity = '0.5');
+            
+            container.appendChild(a);
+          });
+        })
+        .catch(error => {
+          console.error('加载导航链接失败:', error);
+          document.getElementById('navContainer').innerHTML = 
+            '<p style="color: red;">无法加载导航链接配置文件</p>';
+        });
+    </script>
 
     <h2>功能特点</h2>
     <div class="grid">
