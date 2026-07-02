@@ -103,31 +103,35 @@
 
     <script>
       fetch('nav-links.json')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`加载 nav-links.json 失败: ${response.status}`);
-          }
-          return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
           const container = document.getElementById('navContainer');
           data.links.forEach(link => {
-            const a = document.createElement('a');
-            a.href = link.href;
-            a.textContent = link.text;
-            
-            // 可选：为不存在的文件添加禁用样式
-            // fetch(link.href, { method: 'HEAD' })
-            //   .catch(() => a.style.opacity = '0.5');
-            
-            container.appendChild(a);
+            // 检查文件是否存在（HEAD 请求）
+            fetch(link.href, { method: 'HEAD' })
+              .then(res => {
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.text;
+                
+                if (!res.ok) {
+                  a.style.opacity = '0.5';  // 灰显不存在的链接
+                  a.title = '文件不存在';
+                }
+                container.appendChild(a);
+              })
+              .catch(() => {
+                // 文件不存在时的处理
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.text;
+                a.style.opacity = '0.5';
+                a.title = '文件不存在';
+                container.appendChild(a);
+              });
           });
         })
-        .catch(error => {
-          console.error('加载导航链接失败:', error);
-          document.getElementById('navContainer').innerHTML = 
-            '<p style="color: red;">无法加载导航链接配置文件</p>';
-        });
+        .catch(error => console.error('加载导航链接失败:', error));
     </script>
 
     <h2>功能特点</h2>
