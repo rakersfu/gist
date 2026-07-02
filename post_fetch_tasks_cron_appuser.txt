@@ -78,7 +78,8 @@ else
   log "ERROR" "cron_status_html 页面生成失败"
 fi
 
-GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index_json.html"
+#GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index_json.html"
+GIST_index_html="https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
 log "INFO" "正在下载 index.html 页面..."
 if curl -s "$GIST_index_html" | tee "$NAVPAGE_DIR/index.html" > /dev/null; then
   log "INFO" "index.html 页面已保存到 $NAVPAGE_DIR/index.html"
