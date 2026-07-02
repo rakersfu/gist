@@ -25,6 +25,42 @@
       "href": "cron_status.html"
     },
     {
+      "text": "deletion_audit日志",
+      "href": "/private_html/deletion_audit.log.html"
+    },
+    {
+      "text": "hf_http_private日志",
+      "href": "hf_http_private.log.html"
+    },
+    {
+      "text": "hf_http_public日志",
+      "href": "hf_http_public.log.html"
+    },
+    {
+      "text": "supervisord日志",
+      "href": "supervisord.log.html"
+    },
+    {
+      "text": "ttyd日志",
+      "href": "ttyd.log.html"
+    },
+    {
+      "text": "httpd日志",
+      "href": "httpd.log.html"
+    },
+    {
+      "text": "post_appuser日志",
+      "href": "/private_html/post_appuser.log.html"
+    },
+    {
+      "text": "rsyslog日志",
+      "href": "rsyslog.log.html"
+    },
+    {
+      "text": "unzip日志",
+      "href": "unzip.log.html"
+    },
+    {
       "text": "Github推送教程",
       "href": "github_push.html"
     },
@@ -33,12 +69,32 @@
       "href": "github_token.html"
     },
     {
+      "text": "定时任务配置",
+      "href": "crontab.html"
+    },
+    {
       "text": "私有资源",
       "href": "/private_html/index.html"
     },
     {
       "text": "RSS新闻",
       "href": "rss_news.html"
+    },
+    {
+      "text": "v2rayA离线部署",
+      "href": "/private_html/v2raya_offline_install.html"
+    },
+    {
+      "text": "代理设置",
+      "href": "/knowledge/windows/setproxy.html"
+    },
+    {
+      "text": "pip安装方法汇总",
+      "href": "get-pip.html"
+    },
+    {
+      "text": "domains.txt",
+      "href": "domains.txt.html"
     }
   ]
 }
