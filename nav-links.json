@@ -86,7 +86,7 @@
     },
     {
       "text": "私有仓库同步",
-      "href": "navpage/private_html/github_token.html"
+      "href": "/private_html/github_token.html"
     },
     {
       "text": "代理设置",
