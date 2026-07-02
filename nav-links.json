@@ -1,0 +1,44 @@
+{
+  "links": [
+    {
+      "text": "访问我的个人导航页",
+      "href": "nav.html"
+    },
+    {
+      "text": "个人简历",
+      "href": "jianli.html"
+    },
+    {
+      "text": "app日志",
+      "href": "app.log.html"
+    },
+    {
+      "text": "entrypoint日志",
+      "href": "entrypoint.log.html"
+    },
+    {
+      "text": "cron日志",
+      "href": "/private_html/cron.log.html"
+    },
+    {
+      "text": "查看定时任务状态",
+      "href": "cron_status.html"
+    },
+    {
+      "text": "Github推送教程",
+      "href": "github_push.html"
+    },
+    {
+      "text": "Github推送token",
+      "href": "github_token.html"
+    },
+    {
+      "text": "私有资源",
+      "href": "/private_html/index.html"
+    },
+    {
+      "text": "RSS新闻",
+      "href": "rss_news.html"
+    }
+  ]
+}
