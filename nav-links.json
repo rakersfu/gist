@@ -85,6 +85,10 @@
       "href": "/private_html/v2raya_offline_install.html"
     },
     {
+      "text": "私有仓库同步",
+      "href": "navpage/private_html/github_token.html"
+    },
+    {
       "text": "代理设置",
       "href": "/knowledge/windows/setproxy.html"
     },
