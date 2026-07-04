@@ -287,6 +287,7 @@ nano /tmp/nginx.conf.txt
 cat /tmp/nginx.conf.txt | tee /etc/nginx/nginx.conf > /dev/null
 nginx -s reload
 sudo netstat -tulnp | grep :80
+sudo lsof -i:443   # 大部分系统自带的命令
 sudo ss -tulnp | grep nginx
 sudo netstat -tulnp | grep apache
 sudo netstat -tulnp | grep nginx
