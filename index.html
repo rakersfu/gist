@@ -305,9 +305,6 @@ tar -xzvf /opt/v2ray-quote.tar.gz
 # 在Windows11上下载和解压的命令
 wget https://github.com/xiongli870110-hue/Websocat/releases/download/websocat-1.14.1/websocat-build.tar.gz -OutFile websocat-build.tar.gz
 tar -xzf C:\Users\furui\Desktop\websocat-build.tar.gz -C C:\Users\furui\Desktop
-  
-# 常用数据地址
-https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt
 
 # 从Google网盘下载文件
 python3 -m gdown "https://drive.google.com/uc?id=1QPubfRmEKU1n2wfcNhapQLoaRYZ_3kNn" -O output_filename
@@ -341,13 +338,14 @@ $env:HF_TOKEN="hf_token"
 hf auth login
 hf download openbmb/VoxCPM2
 
+#从modelscope下载
+modelscope download --model 'OpenBMB/VoxCPM2' --local_dir 'C:\Users\furui\.cache\huggingface\hub'
+
 #创建软连接
 mklink /J "C:\Users\furui\.ollama\models" "D:\installsoft\ollamamodels"
 
-#modelscope
-modelscope download --model 'OpenBMB/VoxCPM2' --local_dir 'C:\Users\furui\.cache\huggingface\hub'
-
-# 搜索引用
+# 搜索查找
+find / -name "*1panel*" 2>/dev/null
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
 </code></pre>
           </div>
