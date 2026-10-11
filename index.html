@@ -344,6 +344,11 @@ modelscope download --model 'OpenBMB/VoxCPM2' --local_dir 'C:\Users\furui\.cache
 #创建软连接
 mklink /J "C:\Users\furui\.ollama\models" "D:\installsoft\ollamamodels"
 
+# 清理所有docker构建缓存
+docker builder prune -a
+# 或者更彻底地清理（包括未使用的镜像、停止的容器、网络）
+docker system prune -a --volumes
+  
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
