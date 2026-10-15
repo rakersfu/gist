@@ -93,6 +93,10 @@
       "href": "/knowledge/windows/setproxy.html"
     },
     {
+      "text": "网络拦截",
+      "href": "/knowledge/nginx/iptables_blacklist_operation_log.html"
+    },
+    {
       "text": "pip安装方法汇总",
       "href": "get-pip.html"
     },
