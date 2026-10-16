@@ -350,11 +350,13 @@ docker builder prune -a
 docker system prune -a --volumes
 
 # 搭建代理服务并设置白名单
+curl -s ipinfo.io/ip
 sudo ss -tlnp | grep 10808
-sudo iptables -I INPUT 2 -s <新的IP> -p tcp --dport 10808 -j ACCEPT
+sudo iptables -I INPUT 2 -s 217.116.175.8 -p tcp --dport 10808 -j ACCEPT
 sudo netfilter-persistent save
 sudo iptables -L INPUT -n --line-numbers
 sudo docker logs --tail 50 xray-proxy
+curl -v -x http://132.226.81.57:10808 https://api.ipify.org
   
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
