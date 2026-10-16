@@ -355,6 +355,8 @@ sudo ss -tlnp | grep 10808
 sudo iptables -I INPUT 2 -s 217.116.175.8 -p tcp --dport 10808 -j ACCEPT
 sudo netfilter-persistent save
 sudo iptables -L INPUT -n --line-numbers
+sudo iptables -L INPUT -n -v --line-numbers
+sudo iptables -L DOCKER-USER -n -v --line-numbers
 sudo docker logs --tail 50 xray-proxy
 curl -v -x http://132.226.81.57:10808 https://api.ipify.org
   
