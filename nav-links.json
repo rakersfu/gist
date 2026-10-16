@@ -97,6 +97,10 @@
       "href": "/knowledge/nginx/iptables_blacklist_operation_log.html"
     },
     {
+      "text": "网络拦截补充",
+      "href": "/knowledge/nginx/ipset-blacklist-setup-guide.html"
+    },
+    {
       "text": "pip安装方法汇总",
       "href": "get-pip.html"
     },
