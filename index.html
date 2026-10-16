@@ -348,6 +348,13 @@ mklink /J "C:\Users\furui\.ollama\models" "D:\installsoft\ollamamodels"
 docker builder prune -a
 # 或者更彻底地清理（包括未使用的镜像、停止的容器、网络）
 docker system prune -a --volumes
+
+# 搭建代理服务并设置白名单
+sudo ss -tlnp | grep 10808
+sudo iptables -I INPUT 2 -s <新的IP> -p tcp --dport 10808 -j ACCEPT
+sudo netfilter-persistent save
+sudo iptables -L INPUT -n --line-numbers
+sudo docker logs --tail 50 xray-proxy
   
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
