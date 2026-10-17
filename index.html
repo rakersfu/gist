@@ -486,6 +486,8 @@ curl -v -x http://132.226.81.57:10808 https://api.ipify.org
 
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
+# 搜索时排除某类文件
+grep -rn --exclude='*.md' -E "UPREDIS_TOKEN|UPREDIS_REDIS_URL|UPREDIS_LOG_LEVEL" .
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
 </code></pre>
           </div>
