@@ -108,8 +108,8 @@ sudo netstat -tulnp | grep nginx
 curl -v http://0.0.0.0:10002/
 
 # 压缩与解压缩
-你可以使用以下命令将 /opt/v2ray-tmp 目录打包为 .tar.gz 压缩包，并将压缩包保存在 /opt/ 目录下：
-tar -czvf /opt/v2ray-tmp.tar.gz -C /opt v2ray-tmp
+你可以使用以下命令将 /opt/containerd/moontv/LunaTV 目录打包为 .tar.gz 压缩包，并将压缩包保存在 /opt/containerd/moontv/ 目录下：
+tar -czvf /opt/containerd/moontv/LunaTV.tar.gz -C /opt/containerd/moontv LunaTV
 你可以使用以下命令将 /opt/v2ray-tmp.tar.gz 解压到指定目录（用-C指定） /opt/ 下：
 tar -xzvf /opt/v2ray-tmp.tar.gz -C /opt
 执行后会将 /opt/v2ray-quote.tar.gz 中的内容解压到当前目录，并在终端逐行显示每个文件名。例如：
