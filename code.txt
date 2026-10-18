@@ -1,0 +1,182 @@
+docker exec -it wine bash
+
+# 激活 / 退出 Python 虚拟环境
+source /tmp/venv/bin/activate
+. /tmp/venv/bin/activate
+deactivate
+
+# 修改文件权限
+chown appuser:appuser /tmp/hfactive_private.py
+chmod 664 /tmp/navpage/generate_nav.py
+chmod +x /tmp/run_nav_update.sh
+
+# 递归修改目录属主与权限
+chown -R appuser:appuser /tmp/navpage
+chmod -R u+rwX,go+rX /tmp/navpage
+
+# 查看日志
+cat /tmp/logs/hfactive.log
+cat /var/log/cron.log
+
+# 定时任务管理
+crontab -u appuser -l
+crontab -u appuser -e
+
+# 测试文件
+python /tmp/navpage/generate_nav.py
+单次测试文件：su - appuser -c "python3 /tmp/navpage/private_html/generate_portal_config.py"
+              su - appuser -c "python3 /tmp/navpage/private_html/rss_news.py"
+              su - appuser -c "python3 /tmp/navpage/private_html/wedav_list_tar.py"
+单次测试.sh脚本：su - appuser -c "bash /tmp/update_sh.sh"
+                 su - appuser -c "bash /tmp/hf_http_public.sh"
+                 su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
+                 su - appuser -c "bash /tmp/txt_to_html.sh"
+
+# 完全注释项
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" | tee /tmp/navpage/index.html > /dev/null 2>&1 && echo "下载完成"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/post_fetch_tasks_cron_appuser.txt" | tee /tmp/post_fetch_tasks_cron_appuser.sh > /dev/null 2>&1 && echo "下载完成"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/update_sh.sh > /dev/null 2>&1 && echo "下载完成"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/update_sh.sh" | tee /tmp/update_sh.sh > /dev/null 2>&1 && echo "下载完成"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/truncate_logs.sh" | tee /tmp/truncate_logs.sh > /dev/null 2>&1 && echo "下载完成"
+wget -O /share/Public/navpage/index.html "https://cdn.gh-proxy.org/https://raw.githubusercontent.com/rakersfu/gist/main/index.html"
+curl -s "https://cdn.gh-proxy.org/https://raw.githubusercontent.com/rakersfu/gist/main/index.html" | tee /share/Public/navpage/index.html > /dev/null 2>&1 && echo "下载完成"
+su - appuser -c "bash /tmp/update_sh.sh"
+su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
+su - appuser -c "bash /tmp/update_sh.sh > /tmp/update_sh.log 2>&1"
+su - appuser -c "bash /tmp/hf_http_public.sh"
+su - appuser -c "bash /tmp/hf_http_private.sh"
+su - appuser -c "bash /tmp/txt_to_html.sh"
+su - appuser -c "bash /tmp/keepalive.sh"
+su - appuser -c "bash /tmp/truncate_logs.sh"
+curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/txt_to_html.sh" | tee /tmp/txt_to_html.sh > /dev/null 2>&1 && echo "下载完成"
+su - appuser -c 'curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/generate_cron_status_html.py" | python3 > /dev/null'
+printenv > /etc/container_env.sh
+
+# 写入文件（保持权限与属主）
+cat /tmp/lun.txt | tee /etc/logrotate.d/cloudflared > /dev/null
+rm /tmp/navpage/index.html.txt
+nano /tmp/navpage/index.html.txt
+cat /tmp/navpage/index.html.txt | tee /tmp/navpage/index.html > /dev/null
+
+rm /tmp/navpage/conf.yml.txt
+nano /tmp/navpage/conf.yml.txt
+cat /tmp/navpage/conf.yml.txt | tee /tmp/navpage/conf.yml > /dev/null
+
+rm /tmp/fetch_icons.sh.txt
+nano /tmp/fetch_icons.sh.txt
+cat /tmp/fetch_icons.sh.txt | tee /tmp/fetch_icons.sh > /dev/null
+su - appuser -c "bash /tmp/fetch_icons.sh"
+
+rm /tmp/txt_to_html.sh.txt
+nano /tmp/txt_to_html.sh.txt
+cat /tmp/txt_to_html.sh.txt | tee /tmp/txt_to_html.sh > /dev/null
+su - appuser -c "bash /tmp/txt_to_html.sh"
+cat /tmp/logs/txt_to_html.log
+
+rm /tmp/update_hosts.sh.txt
+nano /tmp/update_hosts.sh.txt
+cat /tmp/update_hosts.sh.txt | tee /tmp/update_hosts.sh > /dev/null
+su - appuser -c "bash /tmp/update_hosts.sh"
+
+rm /tmp/hf_http_private.sh.txt
+nano /tmp/hf_http_private.sh.txt
+cat /tmp/hf_http_private.sh.txt | tee /tmp/hf_http_private.sh > /dev/null
+su - appuser -c "bash /tmp/hf_http_private.sh"
+cat /tmp/logs/hfactive_private.log
+
+rm /tmp/download_from_github_gist_navpage.sh.txt
+nano /tmp/download_from_github_gist_navpage.sh.txt
+cat /tmp/download_from_github_gist_navpage.sh.txt | tee /tmp/download_from_github_gist_navpage.sh > /dev/null
+su - appuser -c "bash /tmp/download_from_github_gist_navpage.sh"
+
+rm /tmp/download_from_github_gist_tmp.sh.txt
+nano /tmp/download_from_github_gist_tmp.sh.txt
+cat /tmp/download_from_github_gist_tmp.sh.txt | tee /tmp/download_from_github_gist_tmp.sh > /dev/null
+su - appuser -c "bash /tmp/download_from_github_gist_tmp.sh"
+
+# Nginx修改配置文件
+rm /tmp/nginx.conf.txt
+nano /tmp/nginx.conf.txt
+cat /tmp/nginx.conf.txt | tee /etc/nginx/nginx.conf > /dev/null
+nginx -s reload
+sudo netstat -tulnp | grep :80
+sudo lsof -i:443   # 大部分系统自带的命令
+sudo ss -tulnp | grep nginx
+sudo netstat -tulnp | grep apache
+sudo netstat -tulnp | grep nginx
+/opt/nginx/nginx -s reload -c /opt/nginx/conf/nginx.conf
+curl -v http://0.0.0.0:10002/
+
+# 压缩与解压缩
+你可以使用以下命令将 /opt/v2ray-tmp 目录打包为 .tar.gz 压缩包，并将压缩包保存在 /opt/ 目录下：
+tar -czvf /opt/v2ray-tmp.tar.gz -C /opt v2ray-tmp
+你可以使用以下命令将 /opt/v2ray-tmp.tar.gz 解压到指定目录（用-C指定） /opt/ 下：
+tar -xzvf /opt/v2ray-tmp.tar.gz -C /opt
+执行后会将 /opt/v2ray-quote.tar.gz 中的内容解压到当前目录，并在终端逐行显示每个文件名。例如：
+tar -xzvf /opt/v2ray-quote.tar.gz
+
+# 在Windows11上下载和解压的命令
+wget https://github.com/xiongli870110-hue/Websocat/releases/download/websocat-1.14.1/websocat-build.tar.gz -OutFile websocat-build.tar.gz
+tar -xzf C:\Users\furui\Desktop\websocat-build.tar.gz -C C:\Users\furui\Desktop
+
+# 从Google网盘下载文件
+python3 -m gdown "https://drive.google.com/uc?id=1QPubfRmEKU1n2wfcNhapQLoaRYZ_3kNn" -O output_filename
+
+# 修复中文注释乱码
+iconv -f GBK -t UTF-8 install_engine_and_compose.sh -o fixed.sh
+mv fixed.sh install_engine_and_compose.sh
+
+dos2unix install_engine_and_compose.sh
+
+sed -i 's/\r$//' install_engine_and_compose.sh
+
+chmod +x install_engine_and_compose.sh
+
+# 更新GFW列表
+https://gitlab.com/gfwlist/gfwlist/raw/master/gfwlist.txt
+
+#从github及gitee下载
+#Windows平台
+Invoke-WebRequest -Uri https://bootstrap.pypa.io/get-pip.py -OutFile get-pip.py
+Invoke-WebRequest -Uri https://gitee.com/rakerose/gist/raw/master/get-pip.py -OutFile get-pip.py
+#Linux平台
+curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl -L https://gitee.com/rakerose/gist/raw/master/get-pip.py -o get-pip.py
+curl -L -o reality-checker https://github.com/rakersfu/gist/releases/download/checker/reality-checker
+
+#HF登录与模型下载
+#Powershell命令
+pip install huggingface_hub
+$env:HF_TOKEN="hf_token"
+hf auth login
+hf download openbmb/VoxCPM2
+
+#从modelscope下载
+modelscope download --model 'OpenBMB/VoxCPM2' --local_dir 'C:\Users\furui\.cache\huggingface\hub'
+
+#创建软连接
+mklink /J "C:\Users\furui\.ollama\models" "D:\installsoft\ollamamodels"
+
+# 清理所有docker构建缓存
+docker builder prune -a
+# 或者更彻底地清理（包括未使用的镜像、停止的容器、网络）
+docker system prune -a --volumes
+
+# 搭建代理服务并设置白名单
+curl -s ipinfo.io/ip
+sudo ss -tlnp | grep 10808
+sudo iptables -D INPUT 5
+sudo iptables -I INPUT 5 -p tcp --dport 443 -m state --state NEW -j ACCEPT
+sudo iptables -I INPUT 2 -s 217.116.175.8 -p tcp --dport 10808 -j ACCEPT
+sudo netfilter-persistent save
+sudo iptables -L INPUT -n --line-numbers
+sudo iptables -L INPUT -n -v --line-numbers
+sudo iptables -L DOCKER-USER -n -v --line-numbers
+sudo docker logs --tail 50 xray-proxy
+curl -v -x http://132.226.81.57:10808 https://api.ipify.org
+
+# 搜索查找
+find / -name "*1panel*" 2>/dev/null
+# 搜索时排除某类文件
+grep -rn --exclude='*.md' -E "UPREDIS_TOKEN|UPREDIS_REDIS_URL|UPREDIS_LOG_LEVEL" .
+grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
