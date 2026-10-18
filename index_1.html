@@ -148,6 +148,32 @@
     }
 
     /* ===== 新增样式结束 ===== */
+
+    /* ===== 紧凑版：压缩“常用命令合集”卡片与代码块间距 ===== */
+    .card.compact {
+      padding: 0.55rem 0.75rem 0.45rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+    }
+    .card.compact .card-title {
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+    .card.compact .card-desc {
+      margin: 0;
+      white-space: normal;
+      line-height: 1.45;
+    }
+    .card.compact pre {
+      margin: 0;
+      padding: 0.5rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+    .card.compact pre code {
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
   </style>
 </head>
 
@@ -160,18 +186,14 @@
 
   <div class="container">
     <h2>项目意义</h2>
-    <p>本项目是一个轻量级的导航页生成工具，旨在通过简单的 YAML 配置文件（<code>conf.yml</code>）动态生成美观的导航页面。用户可以轻松管理常用链接�[...]</p>
+    <p>本项目是一个轻量级的导航页生成工具，旨在通过简单的 YAML 配置文件（<code>conf.yml</code>）动态生成美观的导航页面。用户可以轻松管理常用链接和资源，提升浏览效率。</p>
 
     <h2>图标设计细节</h2>
-    <p>图标采用简化的熊猫脸部图案，底部新增的熊猫脸部以几何方式呈现，耳朵、眼斑与鼻部以黑白配色设计，富有辨识度但不具象。图案下方有象征�[...]</p>
+    <p>图标采用简化的熊猫脸部图案，底部新增的熊猫脸部以几何方式呈现，耳朵、眼斑与鼻部以黑白配色设计，富有辨识度但不具象。图案下方有象征稳定与导航功能的简洁底座。</p>
 
-    <!-- 修改：class 从 nav-link nav-link-1 改为 nav-dropdowns -->
-    <div id="navContainer" class="nav-tabs">
-      <!-- 动态生成的分类下拉菜单将插入到这里 -->
-    </div>
+    <div id="navContainer" class="nav-tabs"></div>
 
     <script>
-      // 动态加载 JSON：横向标签栏 + 网格面板
       fetch('nav-links.json')
         .then(r => r.json())
         .then(data => {
@@ -179,10 +201,9 @@
           container.innerHTML = '';
           container.className = 'nav-tabs';
 
-          // 统一整理成 [{ name, links: [{text, href}] }]
           let cats = [];
           if (Array.isArray(data.categories)) {
-            cats = data.categories;                 // 方式 B（你现在的格式）
+            cats = data.categories;
           } else if (Array.isArray(data.links)) {
             const map = new Map();
             data.links.forEach(l => {
@@ -303,12 +324,11 @@ groups:
       <li>
         <strong>更新导航内容</strong><br>
         修改 <code>conf.yml</code> 后，重新运行脚本，或使用以下常用命令合集：
-        <div class="card" style="margin-top:1rem;">
+        <div class="card compact">
           <div class="card-title">
             <img src="icons/docker.ico" alt="icon">常用命令合集
           </div>
           <div class="card-desc">
-            <!-- 这里通过 fetch 动态加载同目录的 code.txt 文件，避免每次修改都改 index.html -->
             <pre><code id="dynamic-code" class="language-bash">加载中…</code></pre>
           </div>
         </div>
@@ -327,24 +347,17 @@ groups:
   </div>
 
   <script>
-    // 动态加载常用命令：从与 index_1.html 同目录下的 code.txt 获取内容并安全插入到 pre/code
     (function(){
-      const CODE_FILE = 'code.txt'; // 如果你希望使用不同文件名，请修改此处
+      const CODE_FILE = 'code.txt';
       const el = document.getElementById('dynamic-code');
       if (!el) return;
 
-      // 加上时间戳避免浏览器缓存。如果你使用 CDN 或需要缓存策略，可去掉 ?t=...
       fetch(CODE_FILE + '?t=' + Date.now(), { cache: 'no-store' })
         .then(resp => {
           if (!resp.ok) throw new Error('HTTP ' + resp.status);
           return resp.text();
         })
         .then(text => {
-          // 如果你只希望插入标记间的一段，可以在这里用正则截取
-          // 例如：const m = text.match(/-----BEGIN NAV-----(.*?)-----END NAV-----/s);
-          // el.textContent = m ? m[1].trim() : text;
-
-          // 直接插入全部文本为纯文本，避免 HTML 被解析（防 XSS）
           el.textContent = text;
         })
         .catch(err => {
@@ -352,8 +365,6 @@ groups:
           el.textContent = '加载失败：' + err.message + '\n\n请确保 code.txt 与 index_1.html 在同一目录且可被访问。';
         });
     })();
-
-    // 保持原有的 nav-links.json 脚本在上方已经运行，可以不需要额外处理
   </script>
 
 </body>
