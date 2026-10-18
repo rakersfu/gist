@@ -175,6 +175,9 @@ sudo iptables -L DOCKER-USER -n -v --line-numbers
 sudo docker logs --tail 50 xray-proxy
 curl -v -x http://132.226.81.57:10808 https://api.ipify.org
 
+# 确认运行用户配置文件也会显示
+ps -eo user,cmd | grep xray
+
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
 # 搜索时排除某类文件
