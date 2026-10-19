@@ -183,3 +183,4 @@ find / -name "*1panel*" 2>/dev/null
 # 搜索时排除某类文件
 grep -rn --exclude='*.md' -E "UPREDIS_TOKEN|UPREDIS_REDIS_URL|UPREDIS_LOG_LEVEL" .
 grep -r "index.html" /tmp/*.sh /tmp/navpage/*.py
+grep -r "ENCRYPTION" /opt/containerd/moontv/LunaTV
