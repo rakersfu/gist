@@ -1,4 +1,4 @@
-docker exec -it wine bash
+docker exec -it lunatv sh
 
 # 激活 / 退出 Python 虚拟环境
 source /tmp/venv/bin/activate
