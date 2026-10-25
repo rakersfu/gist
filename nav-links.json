@@ -53,6 +53,12 @@
         { "text": "定时任务配置", "href": "crontab.html" },
         { "text": "domains.txt", "href": "domains.txt.html" }
       ]
+    },
+    {
+      "name": "结构学习",
+      "links": [
+        { "text": "不实/虚假报告", "href": "knowledge/结构学习/建设工程检测虚假与不实报告认定处罚规范.html" }
+      ]
     }
   ]
 }
