@@ -1,0 +1,28 @@
+# /opt/nginx/conf/proxy_params_moon
+
+# 通用反向代理参数，适用于 Next.js 等动态 Web 应用
+proxy_http_version 1.1;
+
+# 支持 WebSocket 升级（如果不用可以去掉，但留着无害）
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "upgrade";
+
+# 保持真实的 Host 和协议
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-Ssl on;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-Host $host;
+proxy_set_header X-Forwarded-Port $server_port;
+
+# 超时与连接优化
+proxy_connect_timeout 60s;
+proxy_send_timeout 60s;
+proxy_read_timeout 600s;
+proxy_buffering off;  # 关键：禁用缓冲，确保流式响应正常
+proxy_socket_keepalive on;
+
+# 【关键修改】强制覆盖上游（Next.js）可能产生的模糊缓存策略
+# 这确保浏览器不会缓存动态 HTML 和 API 响应
+proxy_set_header Cache-Control "no-store, must-revalidate";
