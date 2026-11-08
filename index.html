@@ -231,13 +231,14 @@ sudo systemctl daemon-reload
 sudo systemctl restart xray.service
 sudo systemctl status xray.service</code><code>sudo systemctl start xray.service
 sudo systemctl stop xray.service
-# Docker复制命令
-rm -rf /opt/navpage
-docker cp  ttyd:/tmp/navpage /opt/navpage
 
 # Xray查看实时日志
 sudo journalctl -u xray.service -f
-sudo journalctl -u xray.service -n 10 -f</code></pre>
+sudo journalctl -u xray.service -n 10 -f
+
+# Docker复制命令
+rm -rf /opt/navpage
+docker cp  ttyd:/tmp/navpage /opt/navpage</code></pre>
   </div>
 </div>
       </li>
