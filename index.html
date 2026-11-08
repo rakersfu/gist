@@ -6,88 +6,242 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="icons/rake.ico" type="image/x-icon">
   <style>
-    body { font-family: sans-serif; margin: 0; background: #f4f6f9; color: #333; }
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --muted: #555;
+      --soft: #eff6ff;
+      --shadow: rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #333;
+      font-family: sans-serif;
+    }
+
     header {
-      background: #2563eb;
+      background: var(--primary);
       color: white;
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
     }
+
     header h1 {
       margin: 0;
       font-size: 1.5rem;
       display: flex;
       align-items: center;
     }
-    header img { width: 30px; height: 30px; margin-right: 10px; }
-    .container { max-width: 1200px; margin: auto; padding: 2rem; }
-    h2 { border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; margin-top: 2rem; font-size: 1.3rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
-    .card { background: white; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
-    .card:hover { transform: translateY(-4px); }
-    .card a { text-decoration: none; color: inherit; display: block; }
-    .card-title { display: flex; align-items: center; font-weight: bold; margin-bottom: 0.5rem; font-size: 1.1rem; }
-    .card-title img { width: 20px; height: 20px; margin-right: 0.5rem; }
-    .card-desc { font-size: 0.9rem; color: #555; white-space: pre-wrap; }
-    pre { background: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; }
-    code { font-family: monospace; font-size: 0.9rem; }
-    footer { margin-top: 2rem; text-align: center; color: #666; font-size: 0.9rem; }
-    .nav-link { margin: 1rem 0; }
-    .nav-link-1 a {
-      color: #2563eb; text-decoration: none; font-weight: bold; position: relative;
-      transition: color 0.3s; display: inline-block; margin-right: 1.5rem;
-    }
-    .nav-link-1 a::after {
-      content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
-      background-color: #2563eb; transition: width 0.3s ease-in-out;
-    }
-    .nav-link-1 a:hover::after { width: 100%; }
-    .nav-link-1 a:hover { color: #1e40af; }
-    .nav-link-2 a {
-      color: #e11d48; text-decoration: none; font-weight: bold; padding: 0.5rem 1rem;
-      border-radius: 6px; transition: background-color 0.3s, color 0.3s;
-    }
-    .nav-link-2 a:hover { background-color: #fce7f3; color: #9f1239; }
-    .nav-link-3 a {
-      color: #059669; text-decoration: none; font-weight: bold; display: inline-flex;
-      align-items: center; padding: 0.5rem; transition: transform 0.2s;
-    }
-    .nav-link-3 a::before { content: '➔'; margin-right: 0.5rem; font-size: 1rem; }
-    .nav-link-3 a:hover { transform: translateX(5px); }
 
-    .nav-tabs { margin: 1rem 0; }
-    .nav-tabs-bar {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; padding-bottom: 0.75rem;
-      border-bottom: 2px solid #e5e7eb;
+    header img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
     }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 0.5rem;
+      margin-top: 2rem;
+      font-size: 1.3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .card-title img {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      white-space: pre-wrap;
+    }
+
+    pre {
+      background: #f9fafb;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .nav-link-2 a {
+      color: #e11d48;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .nav-link-2 a:hover {
+      background-color: #fce7f3;
+      color: #9f1239;
+    }
+
+    .nav-link-3 a {
+      color: #059669;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem;
+      transition: transform 0.2s;
+    }
+
+    .nav-link-3 a::before {
+      content: '➔';
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .nav-link-3 a:hover {
+      transform: translateX(5px);
+    }
+
+    .nav-tabs {
+      margin: 1rem 0;
+    }
+
+    .nav-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--line);
+    }
+
     .nav-tab {
-      font: inherit; font-weight: 600; color: #1d4ed8; background: #eff6ff; border: none;
-      border-radius: 999px; padding: 0.45rem 1.1rem; cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      color: #1d4ed8;
+      background: var(--soft);
+      border: none;
+      border-radius: 999px;
+      padding: 0.45rem 1.1rem;
+      cursor: pointer;
       transition: background-color .2s, color .2s, transform .2s;
     }
-    .nav-tab:hover { background: #dbeafe; transform: translateY(-1px); }
+
+    .nav-tab:hover {
+      background: #dbeafe;
+      transform: translateY(-1px);
+    }
+
     .nav-tab.active {
-      background: #2563eb; color: #fff; box-shadow: 0 2px 8px rgba(37, 99, 235, .35);
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, .35);
     }
-    .nav-tabs-panel { margin-top: 1rem; }
+
+    .nav-tabs-panel {
+      margin-top: 1rem;
+    }
+
     .nav-tabs-panel ul {
-      list-style: none; margin: 0; padding: 0; display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.6rem;
     }
+
     .nav-tabs-panel a {
-      display: block; padding: 0.65rem 0.9rem; background: #fff; border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .07); color: #334155; text-decoration: none;
-      font-size: 0.95rem; transition: background-color .2s, color .2s, transform .2s, box-shadow .2s;
+      display: block;
+      padding: 0.65rem 0.9rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background-color .2s, color .2s, transform .2s, box-shadow .2s;
     }
+
     .nav-tabs-panel a:hover {
-      background: #eff6ff; color: #1d4ed8; transform: translateY(-2px);
+      background: var(--soft);
+      color: var(--primary);
+      transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(37, 99, 235, .15);
     }
 
-    .card.compact { padding: 0.55rem 0.75rem 0.45rem; margin-top: 0.5rem; border-radius: 8px; }
-    .card.compact .card-title { margin-bottom: 0.2rem; font-size: 1rem; }
-    .card.compact .card-desc { margin: 0; white-space: normal; line-height: 1.45; }
+    .card.compact {
+      padding: 0.55rem 0.75rem 0.45rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+    }
+
+    .card.compact .card-title {
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .card.compact .card-desc {
+      margin: 0;
+      white-space: normal;
+      line-height: 1.45;
+    }
+
     .card.compact pre {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -97,6 +251,7 @@
       border-radius: 6px;
       font-size: 0.82rem;
     }
+
     .card.compact pre code {
       display: block;
       min-width: 0;
@@ -107,9 +262,19 @@
     }
 
     @media (max-width: 600px) {
-      .nav-tabs-panel ul { grid-template-columns: 1fr 1fr; }
-      .nav-tab { padding: 0.4rem 0.9rem; font-size: 0.9rem; }
-      .card.compact pre { grid-template-columns: 1fr; gap: 0.5rem; }
+      .nav-tabs-panel ul {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-tab {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+      }
+
+      .card.compact pre {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -148,16 +313,19 @@
             });
             cats = [...map.entries()].map(([name, links]) => ({ name, links }));
           }
+
           if (!cats.length) return;
 
           const bar = document.createElement('div');
           bar.className = 'nav-tabs-bar';
+
           const panel = document.createElement('div');
           panel.className = 'nav-tabs-panel';
 
           const renderPanel = (cat) => {
             panel.innerHTML = '';
             const ul = document.createElement('ul');
+
             (cat.links || []).forEach(link => {
               const li = document.createElement('li');
               const a = document.createElement('a');
@@ -168,10 +336,12 @@
               li.appendChild(a);
               ul.appendChild(li);
             });
+
             panel.appendChild(ul);
           };
 
           let activeIndex = 0;
+
           const updateActive = () => {
             [...bar.children].forEach((b, i) => b.classList.toggle('active', i === activeIndex));
           };
@@ -222,6 +392,7 @@
       <li>
         <strong>准备配置文件</strong><br>
         编辑 <code>config.json</code>，修改配置文件并加载。
+
         <div class="card compact">
           <div class="card-title">服务管理命令</div>
           <div class="card-desc">
@@ -245,19 +416,23 @@ docker cp ttyd:/tmp/navpage /opt/navpage</code>
           </div>
         </div>
       </li>
+
       <li>
         <strong>构建 Docker 镜像</strong><br>
         <pre><code>docker build --no-cache -t my-nav-image .</code></pre>
       </li>
+
       <li>
         <strong>运行容器</strong><br>
         <pre><code>docker run -d --restart=unless-stopped -p 8080:8080 --name my-nav-container my-nav-image</code></pre>
       </li>
+
       <li>
         <strong>访问导航页</strong><br>
         <span class="nav-link-2"><a href="index.html">http://localhost:8080</a></span>（主页）
         <span class="nav-link-2"><a href="nav.html">http://localhost:8080/nav.html</a></span>（导航页）
       </li>
+
       <li>
         <strong>更新内容</strong><br>
         修改配置文件后，可视情况使用以下常用命令合集：
@@ -282,28 +457,27 @@ docker cp ttyd:/tmp/navpage /opt/navpage</code>
   </div>
 
   <script>
-    (function() {
-      function splitBalanced(text) {
-        const normalized = text.replace(/\r\n?/g, '\n');
-        const trimmed = normalized.replace(/^\n+|\n+$/g, '');
-        if (!trimmed) return ['', ''];
+    (function () {
+      function splitBalancedColumns(text) {
+        const normalized = text.replace(/\r\n?/g, '\n').replace(/^\n+|\n+$/g, '');
+        if (!normalized) return ['', ''];
 
-        const lines = trimmed.split('\n');
+        const lines = normalized.split('\n');
         if (lines.length < 2) return [lines[0], ''];
 
-        const lineWeights = lines.map(line => Math.max(line.length, 1));
-        const totalWeight = lineWeights.reduce((sum, weight) => sum + weight, 0);
+        const weights = lines.map(line => Math.max(line.length, 1));
+        const totalWeight = weights.reduce((sum, n) => sum + n, 0);
 
         let leftWeight = 0;
         let bestSplit = 1;
-        let smallestDifference = Infinity;
+        let bestDiff = Infinity;
 
         for (let i = 1; i < lines.length; i++) {
-          leftWeight += lineWeights[i - 1];
-          const difference = Math.abs(totalWeight - 2 * leftWeight);
+          leftWeight += weights[i - 1];
+          const diff = Math.abs(totalWeight - 2 * leftWeight);
 
-          if (difference < smallestDifference) {
-            smallestDifference = difference;
+          if (diff < bestDiff) {
+            bestDiff = diff;
             bestSplit = i;
           }
         }
@@ -314,20 +488,29 @@ docker cp ttyd:/tmp/navpage /opt/navpage</code>
         ];
       }
 
-      const servicePre = document.getElementById('service-commands');
-      const serviceSource = document.getElementById('service-commands-source');
-      if (servicePre && serviceSource) {
-        const [leftText, rightText] = splitBalanced(serviceSource.textContent);
+      function renderTwoColumnBlock(sourceId, targetId) {
+        const sourceEl = document.getElementById(sourceId);
+        const targetEl = document.getElementById(targetId);
+
+        if (!sourceEl || !targetEl) return;
+
+        const [leftText, rightText] = splitBalancedColumns(sourceEl.textContent);
+
         const leftCode = document.createElement('code');
         const rightCode = document.createElement('code');
+
         leftCode.textContent = leftText;
         rightCode.textContent = rightText;
-        servicePre.replaceChildren(leftCode, rightCode);
+
+        targetEl.replaceChildren(leftCode, rightCode);
       }
+
+      renderTwoColumnBlock('service-commands-source', 'service-commands');
 
       const CODE_FILE = 'code.txt';
       const left = document.getElementById('dynamic-code-left');
       const right = document.getElementById('dynamic-code-right');
+
       if (!left || !right) return;
 
       fetch(CODE_FILE + '?t=' + Date.now(), { cache: 'no-store' })
@@ -336,7 +519,7 @@ docker cp ttyd:/tmp/navpage /opt/navpage</code>
           return resp.text();
         })
         .then(text => {
-          const [leftText, rightText] = splitBalanced(text);
+          const [leftText, rightText] = splitBalancedColumns(text);
           left.textContent = leftText;
           right.textContent = rightText;
         })
