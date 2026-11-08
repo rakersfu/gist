@@ -459,32 +459,18 @@ docker cp ttyd:/tmp/navpage /opt/navpage</code>
   <script>
     (function () {
       function splitBalancedColumns(text) {
-        const normalized = text.replace(/\r\n?/g, '\n').replace(/^\n+|\n+$/g, '');
+        const normalized = text
+          .replace(/\r\n?/g, '\n')
+          .replace(/^\n+|\n+$/g, '');
+      
         if (!normalized) return ['', ''];
-
+      
         const lines = normalized.split('\n');
-        if (lines.length < 2) return [lines[0], ''];
-
-        const weights = lines.map(line => Math.max(line.length, 1));
-        const totalWeight = weights.reduce((sum, n) => sum + n, 0);
-
-        let leftWeight = 0;
-        let bestSplit = 1;
-        let bestDiff = Infinity;
-
-        for (let i = 1; i < lines.length; i++) {
-          leftWeight += weights[i - 1];
-          const diff = Math.abs(totalWeight - 2 * leftWeight);
-
-          if (diff < bestDiff) {
-            bestDiff = diff;
-            bestSplit = i;
-          }
-        }
-
+        const midpoint = Math.ceil(lines.length / 2);
+      
         return [
-          lines.slice(0, bestSplit).join('\n'),
-          lines.slice(bestSplit).join('\n')
+          lines.slice(0, midpoint).join('\n'),
+          lines.slice(midpoint).join('\n')
         ];
       }
 
