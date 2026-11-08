@@ -222,19 +222,21 @@
       <li>
         <strong>准备配置文件</strong><br>
         编辑 <code>config.json</code>，修改配置文件并加载。
-        <pre><code>
-Xray 服务管理命令
-# 启动/停止/重启
+<div class="card compact">
+  <div class="card-title">Xray 服务管理命令</div>
+  <div class="card-desc">
+    <pre><code># 启动/停止/重启
 sudo nano /usr/local/etc/xray/config.json
 sudo systemctl daemon-reload
 sudo systemctl restart xray.service
-sudo systemctl status xray.service
-sudo systemctl start xray.service
+sudo systemctl status xray.service</code><code>sudo systemctl start xray.service
 sudo systemctl stop xray.service
+
 # 查看实时日志
 sudo journalctl -u xray.service -f
-sudo journalctl -u xray.service -n 10 -f
-        </code></pre>
+sudo journalctl -u xray.service -n 10 -f</code></pre>
+  </div>
+</div>
       </li>
       <li>
         <strong>构建 Docker 镜像</strong><br>
