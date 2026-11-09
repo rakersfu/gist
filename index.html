@@ -404,6 +404,7 @@ sudo systemctl restart xray.service
 sudo systemctl status xray.service
 sudo systemctl start xray.service
 sudo systemctl stop xray.service
+xray run -c /usr/local/etc/xray/config.json -test
 
 # Xray查看实时日志
 sudo journalctl -u xray.service -f
