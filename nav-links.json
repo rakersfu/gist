@@ -41,6 +41,7 @@
       "links": [
         { "text": "代理设置", "href": "knowledge/windows/setproxy.html" },
         { "text": "Fail2ban", "href": "knowledge/nginx/fail2ban_guide.html" },
+        { "text": "ssh访问控制", "href": "knowledge/linux/ssh-whitelist.html" },
         { "text": "网络拦截", "href": "knowledge/nginx/iptables_blacklist_operation_log.html" },
         { "text": "网络拦截补充", "href": "knowledge/nginx/ipset-blacklist-setup-guide.html" }
       ]
