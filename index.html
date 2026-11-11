@@ -409,6 +409,7 @@ xray run -c /usr/local/etc/xray/config.json -test
 # Xray查看实时日志
 sudo journalctl -u xray.service -f
 sudo journalctl -u xray.service -n 10 -f
+sudo journalctl -u nginx.service -n 10 -f
 
 # Docker复制命令
 rm -rf /opt/navpage
