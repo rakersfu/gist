@@ -1,0 +1,34 @@
+/opt/nginx/logs/access.log /opt/nginx/logs/error.log {
+    # /etc/logrotate.d/nginx-custom
+    # Rotate once per day
+    daily
+
+    # Keep 30 rotations (= ~30 days of history with daily)
+    rotate 30
+
+    # Do not error out if a log file is missing
+    missingok
+
+    # Skip rotation when the file is empty (e.g. an idle error.log)
+    notifempty
+
+    # Compress rotated logs with gzip
+    compress
+
+    # Do not compress on the same pass; compress the previous rotation instead
+    delaycompress
+
+    # Use date suffix, e.g. access.log-20261111
+    dateext
+
+    # Owner and mode for the newly created log files (matches nginx writer)
+    create 0644 www-data root
+
+    # Run postrotate only once per rotation, not once per log file
+    sharedscripts
+
+    # Tell nginx to reopen its log files, so it stops writing to the old inode
+    postrotate
+        [ -e /opt/nginx/logs/nginx.pid ] && kill -USR1 "$(cat /opt/nginx/logs/nginx.pid)"
+    endscript
+}
