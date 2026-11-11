@@ -1,4 +1,6 @@
 # curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/nginx/nginx-custom" | tee /etc/logrotate.d/nginx-custom > /dev/null 2>&1 && echo "下载完成"
+
+
 # 1) Syntax and logic check (dry run, touches nothing)
 logrotate -d /etc/logrotate.d/nginx-custom 2>&1 | grep -iE 'error|rotating pattern|considering|needs'
 
