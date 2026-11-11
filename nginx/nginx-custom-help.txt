@@ -1,0 +1,16 @@
+# 1) Syntax and logic check (dry run, touches nothing)
+logrotate -d /etc/logrotate.d/nginx-custom 2>&1 | grep -iE 'error|rotating pattern|considering|needs'
+
+# 2) sharedscripts works: expect exactly one line, no leading "not"
+logrotate -df /etc/logrotate.d/nginx-custom 2>&1 | grep -E '^running postrotate script'
+
+# 3) File check: should report "ASCII text", no CRLF, no tabs
+file /etc/logrotate.d/nginx-custom
+od -c /etc/logrotate.d/nginx-custom | head -5
+grep -c $'\r' /etc/logrotate.d/nginx-custom
+grep -Pn '\t' /etc/logrotate.d/nginx-custom
+cat -A /etc/logrotate.d/nginx-custom | grep -nE '\^I|\^M'
+
+明天下午一点后，用这两条验收：
+grep opt/nginx /var/lib/logrotate/status
+ls -l --time-style=long-iso /opt/nginx/logs/
