@@ -4,7 +4,7 @@
     daily
 
     # Keep 30 rotations (= ~30 days of history with daily)
-    rotate 30
+    rotate 2
 
     # Do not error out if a log file is missing
     missingok
