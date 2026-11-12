@@ -106,6 +106,7 @@ sudo netstat -tulnp | grep apache
 sudo netstat -tulnp | grep nginx
 /opt/nginx/nginx -s reload -c /opt/nginx/conf/nginx.conf
 curl -v http://0.0.0.0:10002/
+cp /opt/nginx/conf/nginx.conf /opt/nginx/conf/nginx.conf.bak.$(date +%F)
 
 # 压缩与解压缩
 你可以使用以下命令将 /opt/containerd/moontv/LunaTV 目录打包为 .tar.gz 压缩包，并将压缩包保存在 /opt/containerd/moontv/ 目录下：
