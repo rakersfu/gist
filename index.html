@@ -408,8 +408,8 @@ xray run -c /usr/local/etc/xray/config.json -test
 
 # Xray查看实时日志
 sudo journalctl -u xray.service -f
-sudo journalctl -u xray.service -n 10 -f
-tail -n 20 -f /opt/nginx/logs/access.log
+sudo journalctl -u xray.service -n 2 -f
+tail -n 2 -f /opt/nginx/logs/access.log
 
 # Docker复制命令
 rm -rf /opt/navpage
