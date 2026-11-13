@@ -1,5 +1,9 @@
 docker exec -it lunatv sh
 
+# 安装xray
+sudo wget -O /usr/local/bin/xray https://github.com/rakersfu/gist/releases/download/xray/xray
+sudo chmod +x /usr/local/bin/xray
+
 # 激活 / 退出 Python 虚拟环境
 source /tmp/venv/bin/activate
 . /tmp/venv/bin/activate
