@@ -188,6 +188,10 @@ sudo iptables -I INPUT 10 -s 103.67.244.26 -j DROP
 # 确认运行用户配置文件也会显示
 ps -eo user,cmd | grep xray
 
+# 查找文件占用空间最大的
+sudo du -ahx / 2>/dev/null | sort -rh | head -n 10
+sudo du -h --max-depth=1 /var | sort -rh
+
 # 搜索查找
 find / -name "*1panel*" 2>/dev/null
 # 搜索时排除某类文件
