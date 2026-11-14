@@ -22,7 +22,7 @@
     dateext
 
     # Owner and mode for the newly created log files (matches nginx writer)
-    create 0644 www-data root
+    create 0644 ubuntu root
 
     # Run postrotate only once per rotation, not once per log file
     sharedscripts
