@@ -99,17 +99,15 @@ cat /tmp/download_from_github_gist_tmp.sh.txt | tee /tmp/download_from_github_gi
 su - appuser -c "bash /tmp/download_from_github_gist_tmp.sh"
 
 # Nginx修改配置文件
-rm /tmp/nginx.conf.txt
-nano /tmp/nginx.conf.txt
-cat /tmp/nginx.conf.txt | tee /etc/nginx/nginx.conf > /dev/null
+systemctl stop nginx
+curl -L -o /usr/local/bin/nginx https://github.com/rakersfu/nginx/releases/download/nginx-ubuntu-1.30.7/nginx
+chmod +x /usr/local/bin/nginx
+systemctl restart nginx
+systemctl status nginx
+curl -I http://127.0.0.1
 nginx -s reload
 sudo netstat -tulnp | grep :80
 sudo lsof -i:443   # 大部分系统自带的命令
-sudo ss -tulnp | grep nginx
-sudo netstat -tulnp | grep apache
-sudo netstat -tulnp | grep nginx
-/opt/nginx/nginx -s reload -c /opt/nginx/conf/nginx.conf
-curl -v http://0.0.0.0:10002/
 cp /opt/nginx/conf/nginx.conf /opt/nginx/conf/nginx.conf.bak.$(date +%F)
 
 # 压缩与解压缩
