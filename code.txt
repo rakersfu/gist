@@ -26,15 +26,23 @@ cat /var/log/cron.log
 crontab -u appuser -l
 crontab -u appuser -e
 
-# 测试文件
-python /tmp/navpage/generate_nav.py
-单次测试文件：su - appuser -c "python3 /tmp/navpage/private_html/generate_portal_config.py"
-              su - appuser -c "python3 /tmp/navpage/private_html/rss_news.py"
-              su - appuser -c "python3 /tmp/navpage/private_html/wedav_list_tar.py"
-单次测试.sh脚本：su - appuser -c "bash /tmp/update_sh.sh"
-                 su - appuser -c "bash /tmp/hf_http_public.sh"
-                 su - appuser -c "bash /tmp/post_fetch_tasks_cron_appuser.sh"
-                 su - appuser -c "bash /tmp/txt_to_html.sh"
+# 管理ddns-updater
+修改 systemd 服务文件
+nano /etc/systemd/system/ddns-updater.service
+将
+StandardOutput=append:/var/log/ddns-updater/output.log
+StandardError=append:/var/log/ddns-updater/error.log
+替换为
+StandardOutput=journal
+StandardError=journal
+重新加载 systemd 并重启服务
+systemctl daemon-reload
+systemctl restart ddns-updater
+查看日志
+journalctl -u ddns-updater -f  # 实时查看
+journalctl -u ddns-updater --since "1 hour ago"  # 查看最近1小时
+查看状态
+systemctl status ddns-updater
 
 # 完全注释项
 curl -s "https://raw.githubusercontent.com/rakersfu/gist/main/index.html" | tee /tmp/navpage/index.html > /dev/null 2>&1 && echo "下载完成"
