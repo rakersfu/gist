@@ -411,6 +411,10 @@ sudo journalctl -u xray.service -f
 sudo journalctl -u xray.service -n 2 -f
 tail -n 2 -f /opt/nginx/logs/access.log
 
+# 容器管理
+mediawall
+cd /opt/containerd/mediawall/data
+  
 # Docker复制命令
 rm -rf /opt/navpage
 docker cp ttyd:/tmp/navpage /opt/navpage</code>
