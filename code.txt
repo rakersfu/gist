@@ -26,11 +26,12 @@ cat /var/log/cron.log
 crontab -u appuser -l
 crontab -u appuser -e
 
-# chrome-viewer
+# 管理chrome-viewer
 rm /opt/chrome/start-viewer.sh
 nano /opt/chrome/start-viewer.sh
 systemctl restart chrome-viewer
 systemctl status chrome-viewer
+cat /etc/systemd/system/chrome-viewer.service
 
 # 管理ddns-updater
 修改 systemd 服务文件
