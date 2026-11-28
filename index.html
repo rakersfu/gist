@@ -412,8 +412,10 @@ sudo journalctl -u xray.service -n 2 -f
 tail -n 2 -f /opt/nginx/logs/access.log
 
 # 容器管理
-mediawall
-cd /opt/containerd/mediawall/data
+docker compose down
+docker compose up -d --pull always
+docker exec -it mediawall sh
+cd /opt/containerd/mediawall
 mv /tmp/Downloads/*.{png,jpg,jpeg} /opt/containerd/mediawall/data/picture/
   
 # Docker复制命令
